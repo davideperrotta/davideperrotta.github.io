@@ -19,7 +19,7 @@ const count = ref(0)
     and NodeJS stack, with ReactJS for web applications, React Native for mobile applications and NodeJS, Express and
     MongoDB for backend development. I’m a Technical Leader and I like teaching what I do too.
   </p>
-  <hr />
+  <div class="horizontal-line" />
   <h2>
     Most requested services
   </h2>
@@ -54,7 +54,7 @@ const count = ref(0)
       </tr>
     </tbody>
   </table>
-  <hr />
+  <div class="horizontal-line" />
   <div class="sectionContent">
     <div class="sectionTitle">
       <h2>Work Experience</h2>
@@ -82,7 +82,7 @@ const count = ref(0)
         <p>Frontend and backend development for e-commerce websites.</p>
       </article>
       <section>
-        <hr />
+        <div class="horizontal-line" />
         <div class="sectionTitle">
           <h2>Main Key Skills</h2>
         </div>
@@ -91,7 +91,7 @@ const count = ref(0)
             NodeJS with latest frameworks, CSS latest frameworks.</p>
         </div>
       </section>
-      <hr />
+      <div class="horizontal-line" />
       <section>
         <div class="sectionTitle">
           <h2>Languages certifications</h2>
@@ -109,7 +109,7 @@ const count = ref(0)
           </ul>
         </div>
       </section>
-      <hr />
+      <div class="horizontal-line" />
       <section>
         <div class="sectionTitle">
           <h2>Education</h2>
@@ -119,17 +119,17 @@ const count = ref(0)
             <h4>Qualified ICT Engineer</h4>
             <p class="subDetails">Politecnico di Milano, 02/2023</p>
           </article>
-          <hr />
+          <div class="horizontal-line" />
           <article>
             <h4>Biomedical Engineering&nbsp;<b>Master’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy), 10/2017</p>
           </article>
-          <hr />
+          <div class="horizontal-line" />
           <article>
             <h4>Computer and Biomedical Engineering&nbsp;<b>Bachelor’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy)</p>
           </article>
-          <hr />
+          <div class="horizontal-line" />
           <article>
             <h4>Scientific High School</h4>
             <p class="subDetails">Catanzaro (Italy)</p>

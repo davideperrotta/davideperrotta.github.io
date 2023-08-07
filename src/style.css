@@ -91,6 +91,7 @@ button:focus-visible {
 table {
   display: flex;
   justify-content: center;
+  margin: 10px 0;
 }
 
 li {
@@ -99,4 +100,13 @@ li {
 
 ul {
   padding: 0;
+}
+
+.horizontal-line{
+  border-top: 1px solid #35495E;
+  border-bottom: 1px solid #35495E;
+}
+
+h2 {
+  color: #41B883
 }
