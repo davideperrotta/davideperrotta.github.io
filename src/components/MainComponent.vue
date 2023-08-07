@@ -9,7 +9,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1><code>{{ msg }}</code></h1>
+  <h1 class="title">{{ msg }}</h1>
   <h2>
     IT services and digital development
   </h2>

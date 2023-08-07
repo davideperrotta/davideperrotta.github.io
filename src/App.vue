@@ -12,7 +12,7 @@ import MainComponent from './components/MainComponent.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" width="36" />
   </div>
   <div>
-    www.davideperrotta.it - developed using Vite + Vue
+    developed using Vite + Vue
   </div>
 </template>
 
