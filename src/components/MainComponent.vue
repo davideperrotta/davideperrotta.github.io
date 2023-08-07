@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 defineProps({
   msg: String,
+  info: String,
 })
 
 const count = ref(0)
@@ -10,9 +11,7 @@ const count = ref(0)
 
 <template>
   <h1 class="title">{{ msg }}</h1>
-  <h2>
-    IT services and digital development
-  </h2>
+  <h2 class="subtitle">{{ info }}</h2>
   <p>
     Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and
     developing
@@ -158,8 +157,9 @@ const count = ref(0)
       <li><a href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span>YouTube</span></a></li>
     </ul>
     <p class="further-info">
-      For further informations <span class="yellow">contact me</span> on LinkedIn, otherwise create my email address in this way remembering that my name is Davide:
-      <span><span class="cyan">name</span> <span class="green">dot</span> <span class="cyan">surname</span> <span class="green">at</span> <span class="cyan">outlook</span> <span class="green">dot</span> <span class="cyan">it</span></span>
+      <div>For further informations <span class="yellow">contact me</span> on LinkedIn, or send me an email at</div>
+      <div><span class="cyan">name</span> <span class="green">dot</span> <span class="cyan">surname</span> <span class="green">at</span> <span class="cyan">outlook</span> <span class="green">dot</span> <span class="cyan">it</span></div>
+      <div>remembering that Davide is the name.</div>
     </p>
   </div>
 

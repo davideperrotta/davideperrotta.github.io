@@ -6,7 +6,7 @@ import MainComponent from './components/MainComponent.vue'
   <div>
     <img src="../public/photo.jpeg" width="120" class="avatar" alt="avatar" />
   </div>
-  <MainComponent msg="Davide Perrotta" />
+  <MainComponent msg="Davide Perrotta" info="ICT Engineer, Developer, Tech Lead" />
   <div>
       <img src="/vite.svg" class="logo" alt="Vite logo" width="36" />
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" width="36" />
