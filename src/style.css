@@ -87,3 +87,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+table {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
