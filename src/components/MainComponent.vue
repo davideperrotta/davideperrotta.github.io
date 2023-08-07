@@ -9,12 +9,13 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1><code>{{ msg }}</code></h1>
   <h2>
     IT services and digital development
   </h2>
   <p>
-    Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and developing
+    Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and
+    developing
     web applications. I started developing web applications in 2014 using PHP and LAMP stack, then I moved into JavaScript
     and NodeJS stack, with ReactJS for web applications, React Native for mobile applications and NodeJS, Express and
     MongoDB for backend development. I’m a Technical Leader and I like teaching what I do too.
@@ -81,15 +82,22 @@ const count = ref(0)
         <p class="subDetails"><em>Calabria, Italy</em> | <em>March 2015</em> – <em>August 2015</em></p>
         <p>Frontend and backend development for e-commerce websites.</p>
       </article>
+      <div class="horizontal-line" />
       <section>
+        <h2>Tech Skills</h2>
+        <p>
+          HTML, SASS, JavaScript, React, React Native, NextJS, VueJS, SvelteJS, NodeJS, Web Sockets, Unit and frontend
+          testing, AWS Cloud, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / MongoDB /
+          DocumentDB, Caching with Redis / MemoryDB / client-side caching, REST API development, IT Cloud Architectures
+          development, Web Security (Pen-Test major vulnerabilities), Docker and Container based deployments, Experience
+          with major CMS and E-commerce platforms (including payments).
+        </p>
         <div class="horizontal-line" />
-        <div class="sectionTitle">
-          <h2>Main Key Skills</h2>
-        </div>
-        <div class="sectionContent">
-          <p>Javascript for frontend and backend development, React based frameworks, SQL / NoSQL / Caching databases,
-            NodeJS with latest frameworks, CSS latest frameworks.</p>
-        </div>
+        <h2>Soft Skills</h2>
+        <p>
+          Lead developer, team leader, trainer. Management of all development flows into teams, link among the tech team,
+          the company management and the customers.
+        </p>
       </section>
       <div class="horizontal-line" />
       <section>
@@ -119,17 +127,14 @@ const count = ref(0)
             <h4>Qualified ICT Engineer</h4>
             <p class="subDetails">Politecnico di Milano, 02/2023</p>
           </article>
-          <div class="horizontal-line" />
           <article>
             <h4>Biomedical Engineering&nbsp;<b>Master’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy), 10/2017</p>
           </article>
-          <div class="horizontal-line" />
           <article>
             <h4>Computer and Biomedical Engineering&nbsp;<b>Bachelor’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy)</p>
           </article>
-          <div class="horizontal-line" />
           <article>
             <h4>Scientific High School</h4>
             <p class="subDetails">Catanzaro (Italy)</p>
@@ -137,20 +142,25 @@ const count = ref(0)
         </div>
         <div class="clear">&nbsp;</div>
       </section>
+      <div class="horizontal-line" />
     </div>
   </div>
   <div>
     <h2>Links</h2>
-    <ul><li ><a  href="https://linkedin.com/in/davideperrotta" target="_blank" title="Linkedin"><span >LinkedIn</span></a></li><li ><a  href="https://photos.google.com/share/AF1QipMyrbvBPNZL6OWx51TYCDHEO9vQrxynJCOrFPEobDV2seDAP_9Cd1Vh_ZvA-1uiFA?key=eGQ5Z25zREtRcWxGNkxVVUNtUV9ET3hZdVM5VW1n" target="_blank" title=""><span >Photos</span></a></li><li ><a  href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span >YouTube</span></a></li><li ><a  href="https://strava.com/athletes/davideperrotta" target="_blank" title=""><span >Strava</span></a></li></ul>
+    <ul>
+      <li><a href="https://linkedin.com/in/davideperrotta" target="_blank" title="Linkedin"><span>LinkedIn</span></a></li>
+      <li><a
+          href="https://photos.google.com/share/AF1QipMyrbvBPNZL6OWx51TYCDHEO9vQrxynJCOrFPEobDV2seDAP_9Cd1Vh_ZvA-1uiFA?key=eGQ5Z25zREtRcWxGNkxVVUNtUV9ET3hZdVM5VW1n"
+          target="_blank" title=""><span>Photos</span></a></li>
+      <li><a href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span>YouTube</span></a></li>
+      <li><a href="https://strava.com/athletes/davideperrotta" target="_blank" title=""><span>Strava</span></a></li>
+    </ul>
   </div>
 
-  <!--<div class="card">
+<!--<div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
-  </div>-->
+  </div>--></template>
 
-</template>
-
-<style scoped>
-.read-the-docs {
+<style scoped>.read-the-docs {
   color: #888;
 }</style>

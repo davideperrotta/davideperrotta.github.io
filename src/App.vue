@@ -4,7 +4,7 @@ import MainComponent from './components/MainComponent.vue'
 
 <template>
   <div>
-    <img src="https://davideperrotta.files.wordpress.com/2023/02/1674320392926.jpeg?w=372" width="120" class="avatar" alt="avatar" />
+    <img src="../public/photo.jpeg" width="120" class="avatar" alt="avatar" />
   </div>
   <MainComponent msg="Davide Perrotta" />
   <div>

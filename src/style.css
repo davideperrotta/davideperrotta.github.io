@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -94,6 +94,10 @@ table {
   margin: 10px 0;
 }
 
+th, td {
+  padding: 0 20px;
+}
+
 li {
   list-style: none;
 }
@@ -109,4 +113,16 @@ ul {
 
 h2 {
   color: #41B883
+}
+
+h4 {
+  margin-top: 2rem;
+}
+
+body {
+  font-size: 1rem
+}
+
+.avatar {
+  border-radius: 100%;
 }
