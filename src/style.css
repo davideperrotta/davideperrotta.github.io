@@ -96,3 +96,7 @@ table {
 li {
   list-style: none;
 }
+
+ul {
+  padding: 0;
+}

@@ -14,7 +14,7 @@ const count = ref(0)
     IT services and digital development
   </h2>
   <p>
-    Qualified IT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and developing
+    Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and developing
     web applications. I started developing web applications in 2014 using PHP and LAMP stack, then I moved into JavaScript
     and NodeJS stack, with ReactJS for web applications, React Native for mobile applications and NodeJS, Express and
     MongoDB for backend development. I’m a Technical Leader and I like teaching what I do too.
@@ -116,7 +116,7 @@ const count = ref(0)
         </div>
         <div class="sectionContent">
           <article>
-            <h4>Qualified IT Engineer</h4>
+            <h4>Qualified ICT Engineer</h4>
             <p class="subDetails">Politecnico di Milano, 02/2023</p>
           </article>
           <hr />
@@ -139,10 +139,15 @@ const count = ref(0)
       </section>
     </div>
   </div>
-
-  <div class="card">
-    <!--<button type="button" @click="count++">count is {{ count }}</button>-->
+  <div>
+    <h2>Links</h2>
+    <ul><li ><a  href="https://linkedin.com/in/davideperrotta" target="_blank" title="Linkedin"><span >LinkedIn</span></a></li><li ><a  href="https://photos.google.com/share/AF1QipMyrbvBPNZL6OWx51TYCDHEO9vQrxynJCOrFPEobDV2seDAP_9Cd1Vh_ZvA-1uiFA?key=eGQ5Z25zREtRcWxGNkxVVUNtUV9ET3hZdVM5VW1n" target="_blank" title=""><span >Photos</span></a></li><li ><a  href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span >YouTube</span></a></li><li ><a  href="https://strava.com/athletes/davideperrotta" target="_blank" title=""><span >Strava</span></a></li></ul>
   </div>
+
+  <!--<div class="card">
+    <button type="button" @click="count++">count is {{ count }}</button>
+  </div>-->
+
 </template>
 
 <style scoped>
