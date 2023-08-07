@@ -126,3 +126,19 @@ body {
 .avatar {
   border-radius: 100%;
 }
+
+.further-info {
+  color: mediumpurple;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
+
+.cyan {
+  color: cyan;
+}

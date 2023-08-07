@@ -149,12 +149,12 @@ const count = ref(0)
     <h2>Links</h2>
     <ul>
       <li><a href="https://linkedin.com/in/davideperrotta" target="_blank" title="Linkedin"><span>LinkedIn</span></a></li>
-      <li><a
-          href="https://photos.google.com/share/AF1QipMyrbvBPNZL6OWx51TYCDHEO9vQrxynJCOrFPEobDV2seDAP_9Cd1Vh_ZvA-1uiFA?key=eGQ5Z25zREtRcWxGNkxVVUNtUV9ET3hZdVM5VW1n"
-          target="_blank" title=""><span>Photos</span></a></li>
       <li><a href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span>YouTube</span></a></li>
-      <li><a href="https://strava.com/athletes/davideperrotta" target="_blank" title=""><span>Strava</span></a></li>
     </ul>
+    <p class="further-info">
+      For further informations <span class="yellow">contact me</span> on LinkedIn, otherwise create my email address in this way remembering that my name is Davide:
+      <span><span class="cyan">name</span> <span class="green">dot</span> <span class="cyan">surname</span> <span class="green">at</span> <span class="cyan">outlook</span> <span class="green">dot</span> <span class="cyan">it</span></span>
+    </p>
   </div>
 
 <!--<div class="card">
