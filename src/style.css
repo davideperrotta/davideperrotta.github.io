@@ -38,11 +38,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-size: 1.2rem
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: system-ui;
 }
 
 button {
@@ -112,11 +114,8 @@ ul {
 }
 
 h2 {
-  color: #41B883
-}
-
-body {
-  font-size: 1rem
+  color: #41B883;
+  font-family: system-ui;
 }
 
 .avatar {
@@ -149,6 +148,6 @@ body {
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 0px;
 }

@@ -24,7 +24,7 @@ const count = ref(0)
     Most requested services
   </h2>
   <p>
-    I provide digital development services for companies, the most requested are:
+    I provide digital development services, at this moment the most requested are:
   </p>
   <table>
     <tbody>
@@ -50,7 +50,7 @@ const count = ref(0)
       </tr>
       <tr>
         <td class="has-text-align-center" data-align="center">Database</td>
-        <td class="has-text-align-center" data-align="center">SQL, NoSQL (MongoDB), Redis</td>
+        <td class="has-text-align-center" data-align="center">SQL, NoSQL (MongoDB), Caching (Redis)</td>
       </tr>
     </tbody>
   </table>
