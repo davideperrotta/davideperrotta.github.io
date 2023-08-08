@@ -11,7 +11,43 @@ const count = ref(0)
 
 <template>
   <h1 class="title">{{ msg }}</h1>
-  <h2 class="subtitle">{{ info }}</h2>
+  <!--<h2 class="subtitle">{{ info }}</h2>-->
+  <table class="resume-table">
+    <tbody>
+      <tr>
+        <td>Born in</td>
+        <td>1991, Italy (CZ)</td>
+      </tr>
+      <tr>
+        <td>Nationality</td>
+        <td>Italian</td>
+      </tr>
+      <tr>
+        <td>Live in</td>
+        <td>Milano, Italy</td>
+      </tr>
+      <tr>
+        <td>Degree</td>
+        <td>ICT Engineer</td>
+      </tr>
+      <tr>
+        <td>Job</td>
+        <td>Developer, Tech Lead</td>
+      </tr>
+      <tr>
+        <td>Hobbies</td>
+        <td>Playing bass guitar and guitar</td>
+      </tr>
+      <tr>
+        <td>Sports</td>
+        <td>Running, Mountain bike</td>
+      </tr>
+      <tr>
+        <td>Open to</td>
+        <td>Collaborations with developers</td>
+      </tr>
+    </tbody>
+  </table>
   <p>
     Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and
     developing
@@ -26,34 +62,24 @@ const count = ref(0)
   <p>
     I provide digital development services, at this moment the most requested are:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <th class="has-text-align-center" data-align="center"><strong>Context</strong></th>
-        <th class="has-text-align-center" data-align="center"><strong>Technologies</strong></th>
-      </tr>
-      <tr>
-        <td class="has-text-align-center" data-align="center">Frontend</td>
-        <td class="has-text-align-center" data-align="center">JavaScript (React, NextJS)</td>
-      </tr>
-      <tr>
-        <td class="has-text-align-center" data-align="center">Backend</td>
-        <td class="has-text-align-center" data-align="center">JavaScript (NestJS)</td>
-      </tr>
-      <tr>
-        <td class="has-text-align-center" data-align="center">Mobile</td>
-        <td class="has-text-align-center" data-align="center">React-Native</td>
-      </tr>
-      <tr>
-        <td class="has-text-align-center" data-align="center">Server side</td>
-        <td class="has-text-align-center" data-align="center">NodeJS</td>
-      </tr>
-      <tr>
-        <td class="has-text-align-center" data-align="center">Database</td>
-        <td class="has-text-align-center" data-align="center">SQL, NoSQL (MongoDB), Caching (Redis)</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="tech-list">
+    <dl>
+      <dt>Frontend</dt>
+      <dd>JavaScript (React, NextJS)</dd>
+
+      <dt>Backend</dt>
+      <dd>JavaScript (NestJS)</dd>
+
+      <dt>Mobile</dt>
+      <dd>React-Native</dd>
+
+      <dt>Server side</dt>
+      <dd>NodeJS</dd>
+
+      <dt>Database</dt>
+      <dd>MongoDB, Redis (Caching)</dd>
+    </dl>
+  </div>
   <div class="horizontal-line" />
   <div class="sectionContent">
     <div class="sectionTitle">

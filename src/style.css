@@ -90,14 +90,25 @@ button:focus-visible {
   }
 }
 
-table {
+table.resume-table {
   display: flex;
   justify-content: center;
   margin: 10px 0;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-th, td {
+.resume-table td, .resume-table th {
+  border: 1px solid #3DA274;
+  text-align: left;
+  padding: 8px;
   padding: 0 20px;
+}
+
+.resume-table tr:nth-child(even) {
+  background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
+  color: black;
 }
 
 li {
@@ -166,4 +177,16 @@ h2 {
   .subtitle {
     font-size: 1.5rem;
   }
+}
+
+.tech-list {
+  display: block;
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 20px;
 }
