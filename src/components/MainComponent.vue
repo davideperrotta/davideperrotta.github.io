@@ -65,20 +65,20 @@ const count = ref(0)
         <p class="subDetails"><em>Milano, Italy</em> | <em>July 2018</em> –&nbsp;<em>Present</em></p>
         <p>Enterprise websites development, single page applications, mobile apps. Technical Leader, Team Leader</p>
       </article>
-      <span>***</span>
+      <span class="small-separator">___</span>
       <article>
         <h4>Software Developer @ ThinkOpen SRL</h4>
         <p class="subDetails"><em>Milano, Italy</em> | <em>Oct 2017</em> – <em>July 2018</em></p>
         <p>Frontend development for public administrations and banking.</p>
       </article>
-      <span>***</span>
+      <span class="small-separator">___</span>
       <article>
         <h4>Full-Stack Web Developer @ INAMO Web Agency</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>September 2015</em> – <em>April 2017</em></p>
         <p>Analysis and backend / frontend development for e-commerce websites. Environments management, optimization,
           upgrade and support. Development of relational databases.</p>
       </article>
-      <span>***</span>
+      <span class="small-separator">___</span>
       <article>
         <h4>Full-Stack Web Developer @ Ebizlab SRL</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>March 2015</em> – <em>August 2015</em></p>
@@ -129,17 +129,17 @@ const count = ref(0)
             <h4>Qualified ICT Engineer</h4>
             <p class="subDetails">Politecnico di Milano, 02/2023</p>
           </article>
-          <span>***</span>
+          <span class="small-separator">___</span>
           <article>
             <h4>Biomedical Engineering&nbsp;<b>Master’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy), 10/2017</p>
           </article>
-          <span>***</span>
+          <span class="small-separator">___</span>
           <article>
             <h4>Computer and Biomedical Engineering&nbsp;<b>Bachelor’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy)</p>
           </article>
-          <span>***</span>
+          <span class="small-separator">___</span>
           <article>
             <h4>Scientific High School</h4>
             <p class="subDetails">Catanzaro (Italy)</p>

@@ -113,6 +113,10 @@ ul {
   border-bottom: 1px solid #35495E;
 }
 
+.small-separator {
+  color: #35495E;
+}
+
 h2 {
   color: #41B883;
   font-family: system-ui;
