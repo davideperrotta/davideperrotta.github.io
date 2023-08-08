@@ -110,6 +110,12 @@ const count = ref(0)
         <p class="subDetails"><em>Calabria, Italy</em> | <em>March 2015</em> – <em>August 2015</em></p>
         <p>Frontend and backend development for e-commerce websites.</p>
       </article>
+      <span class="small-separator">___</span>
+      <article>
+        <h4>Full-Stack Web Developer @ Magna Graecia University</h4>
+        <p class="subDetails"><em>Catanzaro, Italy</em> | <em>September 2014</em> – <em>July 2015</em></p>
+        <p>Internship, development of a healthcare web application for degree thesis with both backend and frontend.</p>
+      </article>
       <div class="horizontal-line" />
       <section>
         <h2>Tech Skills</h2>
