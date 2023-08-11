@@ -153,6 +153,10 @@ h2 {
   color: cyan;
 }
 
+.purple {
+  color: mediumpurple;
+}
+
 .title, .subtitle {
   background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
   background-clip: text;
@@ -189,4 +193,12 @@ h2 {
 dt {
   font-weight: bold;
   margin-top: 20px;
+}
+
+dd {
+  color: cyan;
+}
+
+.subDetails {
+  color: orange;
 }

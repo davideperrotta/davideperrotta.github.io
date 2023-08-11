@@ -35,6 +35,10 @@ const count = ref(0)
         <td>Developer, Tech Lead</td>
       </tr>
       <tr>
+        <td>Working from</td>
+        <td>2014</td>
+      </tr>
+      <tr>
         <td>Hobbies</td>
         <td>Playing bass guitar and guitar</td>
       </tr>
@@ -64,19 +68,19 @@ const count = ref(0)
   </p>
   <div class="tech-list">
     <dl>
-      <dt>Frontend</dt>
+      <dt class="purple">Frontend</dt>
       <dd>JavaScript (React, NextJS)</dd>
 
-      <dt>Backend</dt>
+      <dt class="purple">Backend</dt>
       <dd>JavaScript (NestJS)</dd>
 
-      <dt>Mobile</dt>
+      <dt class="purple">Mobile</dt>
       <dd>React-Native</dd>
 
-      <dt>Server side</dt>
+      <dt class="purple">Server side</dt>
       <dd>NodeJS</dd>
 
-      <dt>Database</dt>
+      <dt class="purple">Database</dt>
       <dd>MongoDB, Redis (Caching)</dd>
     </dl>
   </div>
@@ -87,32 +91,32 @@ const count = ref(0)
     </div>
     <div class="sectionContent">
       <article>
-        <h4>Senior Consultant @ Deloitte Digital</h4>
+        <h4 class="purple">Senior Consultant @ Deloitte Digital</h4>
         <p class="subDetails"><em>Milano, Italy</em> | <em>July 2018</em> –&nbsp;<em>Present</em></p>
         <p>Enterprise websites development, single page applications, mobile apps. Technical Leader, Team Leader</p>
       </article>
       <span class="small-separator">___</span>
       <article>
-        <h4>Software Developer @ ThinkOpen SRL</h4>
+        <h4 class="purple">Software Developer @ ThinkOpen SRL</h4>
         <p class="subDetails"><em>Milano, Italy</em> | <em>Oct 2017</em> – <em>July 2018</em></p>
         <p>Frontend development for public administrations and banking.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
-        <h4>Full-Stack Web Developer @ INAMO Web Agency</h4>
+        <h4 class="purple">Full-Stack Web Developer @ INAMO Web Agency</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>September 2015</em> – <em>April 2017</em></p>
         <p>Analysis and backend / frontend development for e-commerce websites. Environments management, optimization,
           upgrade and support. Development of relational databases.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
-        <h4>Full-Stack Web Developer @ Ebizlab SRL</h4>
+        <h4 class="purple">Full-Stack Web Developer @ Ebizlab SRL</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>March 2015</em> – <em>August 2015</em></p>
         <p>Frontend and backend development for e-commerce websites.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
-        <h4>Full-Stack Web Developer @ Magna Graecia University</h4>
+        <h4 class="purple">Full-Stack Web Developer @ Magna Graecia University</h4>
         <p class="subDetails"><em>Catanzaro, Italy</em> | <em>September 2014</em> – <em>July 2015</em></p>
         <p>Internship, development of a healthcare web application for degree thesis with both backend and frontend.</p>
       </article>
@@ -124,7 +128,7 @@ const count = ref(0)
           testing, AWS Cloud, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / MongoDB /
           DocumentDB, Caching with Redis / MemoryDB / client-side caching, REST API development, IT Cloud Architectures
           development, Web Security (Pen-Test major vulnerabilities), Docker and Container based deployments, Experience
-          with major CMS and E-commerce platforms (including payments).
+          with major CMS and E-commerce platforms (including payments), Python, Java, C, Arduino.
         </p>
         <div class="horizontal-line" />
         <h2>Soft Skills</h2>
@@ -158,22 +162,22 @@ const count = ref(0)
         </div>
         <div class="sectionContent">
           <article>
-            <h4>Qualified ICT Engineer</h4>
+            <h4 class="purple">Qualified ICT Engineer</h4>
             <p class="subDetails">Politecnico di Milano, 02/2023</p>
           </article>
           <span class="small-separator">___</span>
           <article>
-            <h4>Biomedical Engineering&nbsp;<b>Master’s Degree</b></h4>
+            <h4 class="purple">Biomedical Engineering&nbsp;<b>Master’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy), 10/2017</p>
           </article>
           <span class="small-separator">___</span>
           <article>
-            <h4>Computer and Biomedical Engineering&nbsp;<b>Bachelor’s Degree</b></h4>
+            <h4 class="purple">Computer and Biomedical Engineering&nbsp;<b>Bachelor’s Degree</b></h4>
             <p class="subDetails">Magna Graecia University, Catanzaro (Italy)</p>
           </article>
           <span class="small-separator">___</span>
           <article>
-            <h4>Scientific High School</h4>
+            <h4 class="purple">Scientific High School</h4>
             <p class="subDetails">Catanzaro (Italy)</p>
           </article>
         </div>
