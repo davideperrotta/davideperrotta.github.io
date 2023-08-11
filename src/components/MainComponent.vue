@@ -7,6 +7,7 @@ defineProps({
 })
 
 const count = ref(0)
+const iconWidth = 32;
 </script>
 
 <template>
@@ -39,6 +40,10 @@ const count = ref(0)
         <td>2014</td>
       </tr>
       <tr>
+        <td>Languages</td>
+        <td>Italian, English</td>
+      </tr>
+      <tr>
         <td>Hobbies</td>
         <td>Playing bass guitar and guitar</td>
       </tr>
@@ -63,9 +68,19 @@ const count = ref(0)
   <h2>
     Most requested services
   </h2>
-  <p>
-    I provide digital development services, at this moment the most requested are:
+  <p class="orange">
+    I provide digital development services, the most requested are:
   </p>
+  <div>
+    <img src="/icons/React.svg" class="logo" alt="React logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/Node.js.svg" class="logo" alt="Node logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/MongoDB.svg" class="logo" alt="MongoDB logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/Redis.svg" class="logo" alt="Redis logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/AWS.svg" class="logo" alt="AWS logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/Docker.svg" class="logo" alt="Docker logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/Next.js.svg" class="logo" alt="Next logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/Nest.js.svg" class="logo" alt="Nest logo" :style="{ width: `${iconWidth}px`}" />
+  </div>
   <div class="tech-list">
     <dl>
       <dt class="purple">Frontend</dt>
@@ -93,38 +108,38 @@ const count = ref(0)
       <article>
         <h4 class="purple">Senior Consultant @ Deloitte Digital</h4>
         <p class="subDetails"><em>Milano, Italy</em> | <em>July 2018</em> –&nbsp;<em>Present</em></p>
-        <p>Enterprise websites development, single page applications, mobile apps. Technical Leader, Team Leader</p>
+        <p class="work-experience-detail">Enterprise websites development, single page applications, mobile apps. Technical Leader, Team Leader</p>
       </article>
       <span class="small-separator">___</span>
       <article>
         <h4 class="purple">Software Developer @ ThinkOpen SRL</h4>
         <p class="subDetails"><em>Milano, Italy</em> | <em>Oct 2017</em> – <em>July 2018</em></p>
-        <p>Frontend development for public administrations and banking.</p>
+        <p class="work-experience-detail">Frontend development for public administrations and banking.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
         <h4 class="purple">Full-Stack Web Developer @ INAMO Web Agency</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>September 2015</em> – <em>April 2017</em></p>
-        <p>Analysis and backend / frontend development for e-commerce websites. Environments management, optimization,
+        <p class="work-experience-detail">Analysis and backend / frontend development for e-commerce websites. Environments management, optimization,
           upgrade and support. Development of relational databases.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
         <h4 class="purple">Full-Stack Web Developer @ Ebizlab SRL</h4>
         <p class="subDetails"><em>Calabria, Italy</em> | <em>March 2015</em> – <em>August 2015</em></p>
-        <p>Frontend and backend development for e-commerce websites.</p>
+        <p class="work-experience-detail">Frontend and backend development for e-commerce websites.</p>
       </article>
       <span class="small-separator">___</span>
       <article>
         <h4 class="purple">Full-Stack Web Developer @ Magna Graecia University</h4>
         <p class="subDetails"><em>Catanzaro, Italy</em> | <em>September 2014</em> – <em>July 2015</em></p>
-        <p>Internship, development of a healthcare web application for degree thesis with both backend and frontend.</p>
+        <p class="work-experience-detail">Internship, development of a healthcare web application for degree thesis with both backend and frontend.</p>
       </article>
       <div class="horizontal-line" />
       <section>
         <h2>Tech Skills</h2>
         <p>
-          HTML, SASS, JavaScript, React, React Native, NextJS, VueJS, SvelteJS, NodeJS, Web Sockets, Unit and frontend
+          HTML, SASS, JavaScript, ECMAScript, React, React Native, NextJS, VueJS, SvelteJS, NodeJS, Web Sockets, Unit and frontend
           testing, AWS Cloud, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / MongoDB /
           DocumentDB, Caching with Redis / MemoryDB / client-side caching, REST API development, IT Cloud Architectures
           development, Web Security (Pen-Test major vulnerabilities), Docker and Container based deployments, Experience
@@ -133,7 +148,7 @@ const count = ref(0)
         <div class="horizontal-line" />
         <h2>Soft Skills</h2>
         <p>
-          Lead developer, team leader, trainer. Management of all development flows into teams, link among the tech team,
+          Lead developer, technical and team leader, trainer. Management of all development flows into teams, link among the tech team,
           the company management and the customers.
         </p>
       </section>
@@ -163,7 +178,7 @@ const count = ref(0)
         <div class="sectionContent">
           <article>
             <h4 class="purple">Qualified ICT Engineer</h4>
-            <p class="subDetails">Politecnico di Milano, 02/2023</p>
+            <p class="subDetails">Politecnico di Milano (Italy), 02/2023</p>
           </article>
           <span class="small-separator">___</span>
           <article>

@@ -153,8 +153,20 @@ h2 {
   color: cyan;
 }
 
+.blue {
+  color: #646cff;
+}
+
 .purple {
   color: mediumpurple;
+}
+
+.orange {
+  color: orange;
+}
+
+.work-experience-detail {
+  color: darkseagreen;
 }
 
 .title, .subtitle {
@@ -196,9 +208,9 @@ dt {
 }
 
 dd {
-  color: cyan;
+  color: #646cff;
 }
 
 .subDetails {
-  color: orange;
+  color: #646cff;
 }
