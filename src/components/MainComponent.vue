@@ -69,7 +69,7 @@ const iconWidth = 32;
     Most requested services
   </h2>
   <p class="orange">
-    I provide digital development services, the most requested are:
+    I provide digital development services, most in-demand technologies are:
   </p>
   <div>
     <img src="/icons/React.svg" class="logo" alt="React logo" :style="{ width: `${iconWidth}px`}" />
@@ -139,19 +139,19 @@ const iconWidth = 32;
       <section>
         <h2>Tech Skills</h2>
         <p>
-          HTML, SASS, JavaScript, ECMAScript, React, React Native, NextJS, VueJS, SvelteJS, NodeJS, Web Sockets, Unit and frontend
-          testing, AWS Cloud, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / MongoDB /
+          HTML, SASS, <span class="cyan">JavaScript</span>, ECMAScript, <span class="cyan">React</span>, React Native, NextJS, VueJS, SvelteJS, <span class="cyan">NodeJS</span>, Web Sockets, Unit and frontend
+          testing, <span class="cyan">Amazon Web Services (AWS) Cloud</span>, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / <span class="cyan">MongoDB</span> /
           DocumentDB, Caching with Redis / MemoryDB / client-side caching, REST API development, IT Cloud Architectures
-          development, Web Security (Pen-Test major vulnerabilities), Docker and Container based deployments, Experience
-          with major CMS and E-commerce platforms (including payments), Python, Java, C, Arduino.
+          development, <span class="cyan">Web Security</span> (Pen-Test major vulnerabilities), <span class="cyan">Docker</span> and Container based deployments, Experience
+          with major CMS and E-commerce platforms (including payments), <span class="cyan">Python</span>, Java, C, Arduino.
         </p>
-        <div class="horizontal-line" />
-        <h2>Soft Skills</h2>
+      </section>
+      <div class="horizontal-line" />
+        <!--<h2>Soft Skills</h2>
         <p>
           Lead developer, technical and team leader, trainer. Management of all development flows into teams, link among the tech team,
           the company management and the customers.
         </p>
-      </section>
       <div class="horizontal-line" />
       <section>
         <div class="sectionTitle">
@@ -170,7 +170,7 @@ const iconWidth = 32;
           </ul>
         </div>
       </section>
-      <div class="horizontal-line" />
+      <div class="horizontal-line" />-->
       <section>
         <div class="sectionTitle">
           <h2>Education</h2>
