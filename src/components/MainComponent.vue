@@ -61,8 +61,8 @@ const iconWidth = 32;
     Qualified ICT Engineer, graduated with Engineering Master’s Degree, professional experience in designing and
     developing
     web applications. I started developing web applications in 2014 using PHP and LAMP stack, then I moved into JavaScript
-    and NodeJS stack, with ReactJS for web applications, React Native for mobile applications and NodeJS, Express and
-    MongoDB for backend development. I’m a Technical Leader and I like teaching what I do too.
+    and NodeJS stack, with ReactJS for web applications, React Native or Flutter for mobile applications and NodeJS, Express and
+    MongoDB for backend development, hosted on AWS Cloud. I’m a Technical Leader and I like teaching what I do too.
   </p>
   <div class="horizontal-line" />
   <h2>
@@ -90,10 +90,10 @@ const iconWidth = 32;
       <dd>JavaScript (NestJS)</dd>
 
       <dt class="purple">Mobile</dt>
-      <dd>React-Native</dd>
+      <dd>React-Native, Flutter</dd>
 
       <dt class="purple">Server side</dt>
-      <dd>NodeJS</dd>
+      <dd>NodeJS (on AWS Cloud)</dd>
 
       <dt class="purple">Database</dt>
       <dd>MongoDB, Redis (Caching)</dd>
@@ -139,7 +139,7 @@ const iconWidth = 32;
       <section>
         <h2>Tech Skills</h2>
         <p>
-          HTML, SASS, <span class="cyan">JavaScript</span>, ECMAScript, <span class="cyan">React</span>, React Native, NextJS, VueJS, SvelteJS, <span class="cyan">NodeJS</span>, Web Sockets, Unit and frontend
+          HTML, SASS, <span class="cyan">JavaScript</span>, ECMAScript, <span class="cyan">React</span>, React Native, Flutter, Dart, NextJS, VueJS, SvelteJS, <span class="cyan">NodeJS</span>, Web Sockets, Unit and frontend
           testing, <span class="cyan">Amazon Web Services (AWS) Cloud</span>, Google Cloud, CI/CD with Git and Pipelines, SQL/NoSQL Databases like MySQL / <span class="cyan">MongoDB</span> /
           DocumentDB, Caching with Redis / MemoryDB / client-side caching, REST API development, IT Cloud Architectures
           development, <span class="cyan">Web Security</span> (Pen-Test major vulnerabilities), <span class="cyan">Docker</span> and Container based deployments, Experience
@@ -213,10 +213,7 @@ const iconWidth = 32;
       <div>remembering that Davide is the name.</div>
     </p>
   </div>
-
-<!--<div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-  </div>--></template>
+</template>
 
 <style scoped>.read-the-docs {
   color: #888;
