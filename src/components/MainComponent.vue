@@ -80,6 +80,7 @@ const iconWidth = 32;
     <img src="/icons/Docker.svg" class="logo" alt="Docker logo" :style="{ width: `${iconWidth}px`}" />
     <img src="/icons/Next.js.svg" class="logo" alt="Next logo" :style="{ width: `${iconWidth}px`}" />
     <img src="/icons/Nest.js.svg" class="logo" alt="Nest logo" :style="{ width: `${iconWidth}px`}" />
+    <img src="/icons/flutter.svg" class="logo" alt="Flutter logo" :style="{ width: `${iconWidth}px`}" />
   </div>
   <div class="tech-list">
     <dl>
