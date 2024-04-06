@@ -148,7 +148,7 @@ const iconWidth = 32;
         </p>
       </section>
       <div class="horizontal-line" />
-        <!--<h2>Soft Skills</h2> 
+        <!--<h2>Soft Skills</h2>  <><>
         <p>
           Lead developer, technical and team leader, trainer. Management of all development flows into teams, link among the tech team,
           the company management and the customers.
