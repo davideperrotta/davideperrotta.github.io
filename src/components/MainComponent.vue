@@ -55,6 +55,10 @@ const iconWidth = 32;
         <td>Open to</td>
         <td>Collaborations with developers</td>
       </tr>
+      <tr>
+        <td>CV / Resume</td>
+        <td>Download in <a href="#links">Links</a> section</td>
+      </tr>
     </tbody>
   </table>
   <p>
@@ -202,9 +206,10 @@ const iconWidth = 32;
       <div class="horizontal-line" />
     </div>
   </div>
-  <div>
+  <div id="links">
     <h2>Links</h2>
     <ul>
+      <li><a href="https://davideperrotta.github.io/resume_app" target="_blank" title=""><span>Curriculum Vitae / Resume</span></a></li>
       <li><a href="https://linkedin.com/in/davideperrotta" target="_blank" title="Linkedin"><span>LinkedIn</span></a></li>
       <li><a href="https://www.youtube.com/c/DavidePerrotta" target="_blank" title=""><span>YouTube</span></a></li>
     </ul>
