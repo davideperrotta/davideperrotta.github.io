@@ -57,7 +57,7 @@ const iconWidth = 32;
       </tr>
       <tr>
         <td>CV / Resume</td>
-        <td>Download in <a href="#links">Links</a> section</td>
+        <td>Available in <a href="#links">Links</a> section</td>
       </tr>
     </tbody>
   </table>
