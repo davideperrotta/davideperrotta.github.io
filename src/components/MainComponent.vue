@@ -95,7 +95,7 @@ const iconWidth = 32;
       <dd>JavaScript (NestJS)</dd>
 
       <dt class="purple">Mobile</dt>
-      <dd>React-Native, Flutter</dd>
+      <dd>Flutter, React Native</dd>
 
       <dt class="purple">Server side</dt>
       <dd>NodeJS (on AWS Cloud)</dd>
