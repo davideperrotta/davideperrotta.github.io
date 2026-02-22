@@ -31,7 +31,6 @@
 			</div>
 		</dl>
 		<div class="resume__links">
-			<a href="mailto:name.surname@outlook.com" rel="noopener noreferrer">Email</a>
 			<a href="https://linkedin.com/in/davideperrotta" rel="noopener noreferrer" target="_blank"
 				>LinkedIn</a
 			>
@@ -41,3 +40,105 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	.resume__hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+		gap: 1.5rem;
+		align-items: center;
+	}
+
+	.resume__avatar {
+		display: flex;
+		justify-content: center;
+	}
+
+	.resume__avatar img {
+		width: 140px;
+		height: 140px;
+		border-radius: 999px;
+		object-fit: cover;
+		border: 3px solid rgba(255, 255, 255, 0.8);
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+	}
+
+	.resume__headline h1 {
+		margin: 0 0 0.25rem;
+		font-size: 2.1rem;
+	}
+
+	.resume__role {
+		margin: 0 0 0.25rem;
+		font-weight: 500;
+		color: var(--accent-strong);
+	}
+
+	.resume__location {
+		margin: 0;
+		color: var(--text-muted);
+	}
+
+	.resume__meta {
+		justify-self: flex-end;
+	}
+
+	.resume__meta dl {
+		margin: 0 0 1rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem 1.25rem;
+	}
+
+	.resume__meta dt {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-muted);
+	}
+
+	.resume__meta dd {
+		margin: 0.1rem 0 0;
+		font-weight: 500;
+	}
+
+	.resume__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.resume__links a {
+		padding: 0.45rem 0.75rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.6);
+		font-size: 0.85rem;
+		text-decoration: none;
+		color: inherit;
+		background: rgba(15, 23, 42, 0.04);
+		backdrop-filter: blur(12px);
+		transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+	}
+
+	.resume__links a:hover {
+		background: var(--accent);
+		border-color: transparent;
+		color: white;
+	}
+
+	@media (max-width: 900px) {
+		.resume__hero {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.resume__meta {
+			justify-self: flex-start;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.resume__meta dl {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>
