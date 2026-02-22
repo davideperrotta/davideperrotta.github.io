@@ -12,7 +12,9 @@
 	</article>
 
 	<details class="experience-more">
-		<summary class="experience-more__summary">Show more</summary>
+		<summary class="experience-more__summary">
+			<span class="sr-only">Toggle previous roles</span>
+		</summary>
 		<article class="entry">
 			<header>
 				<h3>Software Developer · ThinkOpen SRL</h3>
@@ -93,7 +95,27 @@
 		justify-content: center;
 	}
 
+	.experience-more__summary::after {
+		content: 'Show more';
+	}
+
+	.experience-more[open] .experience-more__summary::after {
+		content: 'Show less';
+	}
+
 	.experience-more__summary::-webkit-details-marker {
 		display: none;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
 	}
 </style>
