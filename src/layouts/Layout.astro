@@ -1,3 +1,8 @@
+---
+import astroLogo from '../assets/astro.svg';
+
+const year = new Date().getFullYear();
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -10,6 +15,17 @@
 	</head>
 	<body>
 		<slot />
+		<footer class="site-footer">
+			<span>{year} Davide Perrotta · Built with Astro</span>
+			<img
+				class="site-footer__logo"
+				src={astroLogo.src}
+				alt="Astro"
+				width="28"
+				height="28"
+				loading="lazy"
+			/>
+		</footer>
 	</body>
 </html>
 
@@ -35,6 +51,24 @@
 		color: #e5e7eb;
 		padding: 2.5rem 1rem 2rem;
 		box-sizing: border-box;
+	}
+
+	.site-footer {
+		padding: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		opacity: 0.9;
+		text-align: center;
+	}
+
+	.site-footer__logo {
+		background-color: #ffffff;
+		border-radius: 999px;
+		padding: 3px;
 	}
 
 	:root {
