@@ -1,9 +1,9 @@
 <section class="card" aria-labelledby="skills-title">
 	<h2 id="skills-title">Tech Skills</h2>
 	<div class="skills-grid">
-		<div>
+		<div class="skills-category">
 			<h3>Frontend</h3>
-			<ul>
+			<ul class="skills-list">
 				<li>JavaScript, TypeScript</li>
 				<li>React, Next.js</li>
 				<li>Vue, Svelte, Astro</li>
@@ -19,9 +19,9 @@
 				<li>AI tools for frontend development and design</li>
 			</ul>
 		</div>
-		<div>
+		<div class="skills-category">
 			<h3>Backend & Cloud</h3>
-			<ul>
+			<ul class="skills-list">
 				<li>Node.js, NestJS</li>
 				<li>REST APIs, WebSockets</li>
 				<li>AWS & Google Cloud, CI/CD, AI agents integration</li>
@@ -34,9 +34,9 @@
 
 			</ul>
 		</div>
-		<div>
+		<div class="skills-category">
 			<h3>Data & Infra</h3>
-			<ul>
+			<ul class="skills-list">
 				<li>MySQL, MongoDB, DocumentDB</li>
 				<li>Redis, client‑side caching</li>
 				<li>Docker & containerized deployments</li>
@@ -44,9 +44,9 @@
 				<li>Web performance optimization and best practices</li>
 			</ul>
 		</div>
-		<div>
+		<div class="skills-category">
 			<h3>Other</h3>
-			<ul>
+			<ul class="skills-list">
 				<li>Web security & pen‑test basics</li>
 				<li>AI tools and autonomous agents for development</li>
 				<li>Python, Java, C, Arduino</li>
@@ -62,21 +62,43 @@
 <style>
 	.skills-grid {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.9rem 1.2rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem 1.2rem;
 	}
 
-	.skills-grid h3 {
-		margin: 0 0 0.25rem;
+	.skills-category {
+		background: rgba(15, 23, 42, 0.6);
+		border-radius: 0.9rem;
+		border: 1px solid rgba(148, 163, 184, 0.45);
+		padding: 0.75rem 0.9rem;
+	}
+
+	.skills-category h3 {
+		margin: 0 0 0.35rem;
 		font-size: 0.9rem;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--accent-soft);
 	}
 
-	.skills-grid ul {
+	.skills-list {
+		margin: 0.1rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+
+	.skills-list li {
 		margin: 0;
-		padding-left: 1rem;
-	}
-
-	.skills-grid li {
-		margin: 0.12rem 0;
+		padding: 0.16rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(148, 163, 184, 0.55);
+		background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.35), transparent 55%),
+			linear-gradient(to bottom right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8));
+		font-size: 0.78rem;
+		white-space: normal;
+		word-break: break-word;
 	}
 </style>
