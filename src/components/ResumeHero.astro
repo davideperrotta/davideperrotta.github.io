@@ -44,14 +44,17 @@
 <style>
 	.resume__hero {
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-		gap: 1.5rem;
-		align-items: center;
+		grid-template-columns: auto minmax(0, 1fr);
+		column-gap: 1.75rem;
+		row-gap: 1rem;
+		align-items: start;
 	}
 
 	.resume__avatar {
 		display: flex;
 		justify-content: center;
+		grid-row: 1 / span 2;
+		grid-column: 1;
 	}
 
 	.resume__avatar img {
@@ -80,7 +83,9 @@
 	}
 
 	.resume__meta {
-		justify-self: flex-end;
+		text-align: left;
+		grid-column: 2;
+		grid-row: 2;
 	}
 
 	.resume__meta dl {
@@ -126,19 +131,4 @@
 		color: white;
 	}
 
-	@media (max-width: 900px) {
-		.resume__hero {
-			grid-template-columns: minmax(0, 1fr);
-		}
-
-		.resume__meta {
-			justify-self: flex-start;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.resume__meta dl {
-			grid-template-columns: minmax(0, 1fr);
-		}
-	}
 </style>
