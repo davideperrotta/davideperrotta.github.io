@@ -30,6 +30,7 @@ categories:
     items:
       - MySQL, MongoDB, DocumentDB
       - Redis, client‑side caching
+      - SQL and NoSQL databases
       - Docker & containerized deployments
       - Unit testing, integration testing, end‑to‑end testing
       - Web performance optimization and best practices
