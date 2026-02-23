@@ -13,5 +13,5 @@ export default defineConfig({
 		? 'https://davideperrotta.github.io/resume-astro/'
 		: undefined,
 	base: isProd ? '/resume-astro/' : '/',
-	integrations: [react(), keystatic()],
+	integrations: isProd ? [react()] : [react(), keystatic()],
 });
