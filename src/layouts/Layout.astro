@@ -2,6 +2,7 @@
 import astroLogo from '../assets/astro.svg';
 
 const year = new Date().getFullYear();
+const { title = 'Davide Perrotta · Resume', noindex = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,7 +12,8 @@ const year = new Date().getFullYear();
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Davide Perrotta · Resume</title>
+		<title>{title}</title>
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 	</head>
 	<body>
 		<slot />

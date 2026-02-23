@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CounterButton } from '../components/CounterButton';
+import { CounterDisplay } from '../components/CounterDisplay';
+---
+
+<Layout title="Contatore con Nanostores" noindex>
+	<h1>Contatore con Nanostores</h1>
+	<p>
+		Questa pagina mostra due island React separate che condividono lo stesso stato
+		tramite Nanostores.
+	</p>
+
+	<section>
+		<h2>Bottone (island 1)</h2>
+		<CounterButton client:load />
+	</section>
+
+	<section>
+		<h2>Display del contatore (island 2)</h2>
+		<CounterDisplay client:load />
+	</section>
+</Layout>
