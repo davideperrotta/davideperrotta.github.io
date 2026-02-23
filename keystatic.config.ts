@@ -8,6 +8,7 @@ export default config({
     hero: singleton({
       label: 'Hero',
       path: 'src/content/hero',
+      format: { data: 'yaml' },
       schema: {
         name: fields.text({ label: 'Name' }),
         role: fields.text({ label: 'Role' }),
@@ -37,6 +38,7 @@ export default config({
     profile: singleton({
       label: 'Profile',
       path: 'src/content/profile',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Profile' }),
         paragraphs: fields.array(
@@ -48,6 +50,7 @@ export default config({
     experience: singleton({
       label: 'Experience',
       path: 'src/content/experience',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Work Experience' }),
         positions: fields.array(
@@ -68,6 +71,7 @@ export default config({
     education: singleton({
       label: 'Education',
       path: 'src/content/education',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Education' }),
         entries: fields.array(
@@ -82,6 +86,7 @@ export default config({
     skills: singleton({
       label: 'Skills',
       path: 'src/content/skills',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Tech Skills' }),
         categories: fields.array(
@@ -99,6 +104,7 @@ export default config({
     services: singleton({
       label: 'Services',
       path: 'src/content/services',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Most Requested Services' }),
         tags: fields.array(
@@ -110,6 +116,7 @@ export default config({
     links: singleton({
       label: 'Links',
       path: 'src/content/links',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Links' }),
         links: fields.array(
@@ -124,6 +131,7 @@ export default config({
     certifications: singleton({
       label: 'Certifications',
       path: 'src/content/certifications',
+      format: { data: 'yaml' },
       schema: {
         title: fields.text({ label: 'Title', defaultValue: 'Certifications' }),
         items: fields.array(
