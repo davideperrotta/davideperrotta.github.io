@@ -1,22 +1,16 @@
+---
+const { education } = Astro.props;
+---
+
 <section class="card" aria-labelledby="education-title">
-	<h2 id="education-title">Education</h2>
+	<h2 id="education-title">{education.title}</h2>
 	<ul class="timeline">
-		<li>
-			<h3>Qualified ICT Engineer</h3>
-			<p class="entry__meta">Politecnico di Milano, Italy · 02/2023</p>
-		</li>
-		<li>
-			<h3>Biomedical Engineering · Master’s Degree</h3>
-			<p class="entry__meta">Magna Graecia University, Catanzaro · 10/2017</p>
-		</li>
-		<li>
-			<h3>Computer & Biomedical Engineering · Bachelor’s Degree</h3>
-			<p class="entry__meta">Magna Graecia University, Catanzaro</p>
-		</li>
-		<li>
-			<h3>Scientific High School</h3>
-			<p class="entry__meta">Catanzaro, Italy</p>
-		</li>
+		{education.entries?.map((entry) => (
+			<li>
+				<h3>{entry.title}</h3>
+				<p class="entry__meta">{entry.meta}</p>
+			</li>
+		))}
 	</ul>
 </section>
 

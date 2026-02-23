@@ -1,11 +1,13 @@
-<section class="card">
-	<h2>Certifications</h2>
+---
+const { certifications } = Astro.props;
+---
+
+<section class="card" aria-labelledby="certifications-title">
+	<h2 id="certifications-title">{certifications.title}</h2>
 	<ul class="certifications">
-		<li>AWS Cloud Practitioner</li>
-		<li>AWS Generative AI Essentials </li>
-		<li>Salesforce AI Associate</li>
-		<li>Adobe Experience Manager Sites Developer</li>
-		<li>Business English Level 10/10 by Learnship</li>
+		{certifications.items?.map((item) => (
+			<li>{item}</li>
+		))}
 	</ul>
 </section>
 

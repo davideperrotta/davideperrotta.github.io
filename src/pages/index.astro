@@ -8,24 +8,34 @@ import ResumeServices from '../components/ResumeServices.astro';
 import ResumeSkills from '../components/ResumeSkills.astro';
 import ResumeLinks from '../components/ResumeLinks.astro';
 import ResumeCertifications from '../components/ResumeCertifications.astro';
+import { keystaticReader } from '../keystatic';
+
+const hero = await keystaticReader.singletons.hero.read();
+const profile = await keystaticReader.singletons.profile.read();
+const experience = await keystaticReader.singletons.experience.read();
+const education = await keystaticReader.singletons.education.read();
+const skills = await keystaticReader.singletons.skills.read();
+const services = await keystaticReader.singletons.services.read();
+const links = await keystaticReader.singletons.links.read();
+const certifications = await keystaticReader.singletons.certifications.read();
 ---
 
 <Layout>
 	<main class="resume">
-		<ResumeHero />
+		<ResumeHero hero={hero} />
 
 		<section class="resume__content">
 			<section class="resume__column resume__column--main">
-				<ResumeProfile />
-				<ResumeEducation />
-				<ResumeSkills />
+				<ResumeProfile profile={profile} />
+				<ResumeEducation education={education} />
+				<ResumeSkills skills={skills} />
 			</section>
 
 			<section class="resume__column resume__column--side">
-				<ResumeServices />
-				<ResumeExperience />
-				<ResumeCertifications />
-				<ResumeLinks />
+				<ResumeServices services={services} />
+				<ResumeExperience experience={experience} />
+				<ResumeCertifications certifications={certifications} />
+				<ResumeLinks links={links} />
 			</section>
 		</section>
 	</main>

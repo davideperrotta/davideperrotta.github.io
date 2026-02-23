@@ -1,0 +1,21 @@
+name: Davide Perrotta
+role: ICT Engineer · Developer · Tech Lead
+location: Milano, Italy
+avatarUrl: https://davideperrotta.github.io/assets/photo-e06e0af6.jpeg
+bornLabel: Born
+bornValue: 1991, Italy (CZ)
+degreeLabel: Degree
+degreeValue: ICT Engineer, State Exam Qualified
+experienceLabel: Experience
+experienceValue: Building digital products since 2014
+languagesLabel: Languages
+languagesValue: Italian, English
+hobbiesLabel: Hobbies
+hobbiesValue: Bass guitar, guitar, reading books
+sportsLabel: Sports
+sportsValue: Running, mountain bike, kayak
+links:
+  - label: Linkedin
+    url: https://linkedin.com/in/davideperrotta
+  - label: Resume
+    url: https://davideperrotta.github.io/resume_app/

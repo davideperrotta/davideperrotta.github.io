@@ -1,0 +1,44 @@
+title: Tech Skills
+categories:
+  - name: Frontend
+    items:
+      - JavaScript, TypeScript
+      - React, Next.js
+      - Vue, Svelte, Astro
+      - Flutter & Dart, React Native
+      - State management (Redux, Zustand)
+      - Tailwind CSS, Bootstrap
+      - HTML, CSS, SASS
+      - Accessibility best practices
+      - Cross‑browser compatibility and responsive design
+      - Web performance optimization and best practices
+      - SEO fundamentals for web applications
+      - Web security best practices for frontend development
+      - AI tools for frontend development and design
+  - name: Backend & Cloud
+    items:
+      - Node.js, NestJS
+      - REST APIs, WebSockets
+      - AWS & Google Cloud, CI/CD, AI agents integration
+      - Serverless architectures
+      - Microservices & event‑driven architectures
+      - Monitoring, logging and performance optimization
+      - Authentication, authorization and security best practices
+      - Web performance optimization and best practices
+      - Web security best practices for backend development
+  - name: Data & Infra
+    items:
+      - MySQL, MongoDB, DocumentDB
+      - Redis, client‑side caching
+      - Docker & containerized deployments
+      - Unit testing, integration testing, end‑to‑end testing
+      - Web performance optimization and best practices
+  - name: Other
+    items:
+      - Web security & pen‑test basics
+      - AI tools and autonomous agents for development
+      - Python, Java, C, Arduino
+      - CMS & e‑commerce platforms
+      - Agile methodologies, project management and team leadership
+      - Technical architecture design and code reviews
+      - Technical documentation and knowledge sharing

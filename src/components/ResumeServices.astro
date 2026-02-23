@@ -1,12 +1,13 @@
+---
+const { services } = Astro.props;
+---
+
 <section class="card" aria-labelledby="services-title">
-	<h2 id="services-title">Most Requested Services</h2>
+	<h2 id="services-title">{services.title}</h2>
 	<ul class="tags">
-		<li>Frontend web applications</li>
-		<li>Backend & APIs</li>
-		<li>Mobile apps</li>
-		<li>Cloud architectures</li>
-		<li>Performance & scalability</li>
-		<li>Security reviews</li>
+		{services.tags?.map((tag) => (
+			<li>{tag}</li>
+		))}
 	</ul>
 	<div class="logos" aria-label="Most used technologies">
 		<img src="https://davideperrotta.github.io/icons/React.svg" alt="React" loading="lazy" />

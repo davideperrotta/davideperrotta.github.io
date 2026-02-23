@@ -1,60 +1,44 @@
+---
+const { experience } = Astro.props;
+---
+
 <section class="card" aria-labelledby="experience-title">
-	<h2 id="experience-title">Work Experience</h2>
-	<article class="entry">
-		<header>
-			<h3>Senior Consultant · Deloitte Digital</h3>
-			<p class="entry__meta">Milan, Italy · Jul 2018 – Present</p>
-		</header>
-		<ul>
-			<li>Leading teams building enterprise websites, single‑page apps and mobile apps.</li>
-			<li>Defining technical solutions, reviewing code and supporting architecture decisions.</li>
-		</ul>
-	</article>
+	<h2 id="experience-title">{experience.title}</h2>
 
-	<details class="experience-more">
-		<summary class="experience-more__summary">
-			<span class="sr-only">Toggle previous roles</span>
-		</summary>
+	{experience.positions?.length && (
 		<article class="entry">
 			<header>
-				<h3>Software Developer · ThinkOpen SRL</h3>
-				<p class="entry__meta">Milan, Italy · Oct 2017 – Jul 2018</p>
+				<h3>{experience.positions[0].role}</h3>
+				<p class="entry__meta">{experience.positions[0].meta}</p>
 			</header>
 			<ul>
-				<li>Frontend development for public administration and banking projects.</li>
+				{experience.positions[0].bullets?.map((bullet) => (
+					<li>{bullet}</li>
+				))}
 			</ul>
 		</article>
+	)}
 
-		<article class="entry">
-			<header>
-				<h3>Full‑Stack Web Developer · INAMO Web Agency</h3>
-				<p class="entry__meta">Calabria, Italy · Sep 2015 – Apr 2017</p>
-			</header>
-			<ul>
-				<li>End‑to‑end development and maintenance of e‑commerce platforms.</li>
-			</ul>
-		</article>
-
-		<article class="entry">
-			<header>
-				<h3>Full‑Stack Web Developer · Ebizlab SRL</h3>
-				<p class="entry__meta">Calabria, Italy · Mar 2015 – Aug 2015</p>
-			</header>
-			<ul>
-				<li>Developing web applications for commerce and business clients.</li>
-			</ul>
-		</article>
-
-		<article class="entry">
-			<header>
-				<h3>Full‑Stack Web Developer · Magna Graecia University</h3>
-				<p class="entry__meta">Catanzaro, Italy · Sep 2014 – Jul 2015</p>
-			</header>
-			<ul>
-				<li>Internship building a healthcare web application for academic research.</li>
-			</ul>
-		</article>
-	</details>
+	{experience.positions?.length > 1 && (
+		<details class="experience-more">
+			<summary class="experience-more__summary">
+				<span class="sr-only">Toggle previous roles</span>
+			</summary>
+			{experience.positions.slice(1).map((position) => (
+				<article class="entry">
+					<header>
+						<h3>{position.role}</h3>
+						<p class="entry__meta">{position.meta}</p>
+					</header>
+					<ul>
+						{position.bullets?.map((bullet) => (
+							<li>{bullet}</li>
+						))}
+					</ul>
+				</article>
+			))}
+		</details>
+	)}
 </section>
 
 <style>

@@ -1,0 +1,25 @@
+title: Work Experience
+positions:
+  - role: Senior Consultant · Deloitte Digital
+    meta: Milan, Italy · Jul 2018 – Present
+    bullets:
+      - Leading teams building enterprise websites, single‑page apps and mobile apps.
+      - Defining technical solutions, reviewing code and supporting architecture decisions.
+  - role: Software Developer · ThinkOpen SRL
+    meta: Milan, Italy · Oct 2017 – Jul 2018
+    bullets:
+      - Frontend development for public administration and banking projects.
+  - role: Full‑Stack Web Developer · INAMO Web Agency
+    meta: Calabria, Italy · Sep 2015 – Apr 2017
+    bullets:
+      - End‑to‑end development and maintenance of e‑commerce platforms.
+  - role: Full‑Stack Web Developer · Ebizlab SRL
+    meta: Calabria, Italy · Mar 2015 – Aug 2015
+    bullets:
+      - Developing web applications for commerce and business clients.
+  - role: Full‑Stack Web Developer · Magna Graecia University
+    meta: Catanzaro, Italy · Sep 2014 – Jul 2015
+    bullets:
+      - Internship building a healthcare web application for academic research.
+showMoreLabel: Show more
+showLessLabel: Show less

@@ -1,50 +1,53 @@
+---
+const { hero } = Astro.props;
+---
+
 <section class="resume__hero">
 	<div class="resume__avatar">
 		<img
-			src="https://davideperrotta.github.io/assets/photo-e06e0af6.jpeg"
-			alt="Portrait of Davide Perrotta"
+			src={hero.avatarUrl}
+			alt={`Portrait of ${hero.name}`}
 			loading="lazy"
 		/>
 	</div>
 	<div class="resume__headline">
-		<h1>Davide Perrotta</h1>
-		<p class="resume__role">ICT Engineer · Developer · Tech Lead</p>
-		<p class="resume__location">Milano, Italy</p>
+		<h1>{hero.name}</h1>
+		<p class="resume__role">{hero.role}</p>
+		<p class="resume__location">{hero.location}</p>
 	</div>
 	<div class="resume__meta">
 		<dl>
 			<div>
-				<dt>Born</dt>
-				<dd>1991, Italy (CZ)</dd>
+				<dt>{hero.bornLabel}</dt>
+				<dd>{hero.bornValue}</dd>
 			</div>
 			<div>
-				<dt>Degree</dt>
-				<dd>ICT Engineer, State Exam Qualified</dd>
+				<dt>{hero.degreeLabel}</dt>
+				<dd>{hero.degreeValue}</dd>
 			</div>
 			<div>
-				<dt>Experience</dt>
-				<dd>Building digital products since 2014</dd>
+				<dt>{hero.experienceLabel}</dt>
+				<dd>{hero.experienceValue}</dd>
 			</div>
 			<div>
-				<dt>Languages</dt>
-				<dd>Italian, English</dd>
+				<dt>{hero.languagesLabel}</dt>
+				<dd>{hero.languagesValue}</dd>
 			</div>
 			<div>
-				<dt>Hobbies</dt>
-				<dd>Bass guitar, guitar, reading books</dd>
+				<dt>{hero.hobbiesLabel}</dt>
+				<dd>{hero.hobbiesValue}</dd>
 			</div>
-            <div>
-				<dt>Sports</dt>
-				<dd>Running, mountain bike, kayak</dd>
+			<div>
+				<dt>{hero.sportsLabel}</dt>
+				<dd>{hero.sportsValue}</dd>
 			</div>
 		</dl>
 		<div class="resume__links">
-			<a href="https://linkedin.com/in/davideperrotta" rel="noopener noreferrer" target="_blank"
-				>LinkedIn</a
-			>
-			<a href="https://davideperrotta.github.io/resume_app" rel="noopener noreferrer" target="_blank"
-				>Resume</a
-			>
+			{hero.links?.map((link) => (
+				<a href={link.url} rel="noopener noreferrer" target="_blank">
+					{link.label}
+				</a>
+			))}
 		</div>
 	</div>
 </section>

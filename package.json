@@ -9,11 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@keystatic/core": "^0.5.0",
     "@astrojs/react": "^4.4.2",
     "@nanostores/react": "^1.0.0",
     "astro": "^5.17.1",
     "nanostores": "^1.1.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "@keystatic/astro": "^5.0.6"
   }
 }

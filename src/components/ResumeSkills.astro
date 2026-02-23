@@ -1,3 +1,66 @@
+---
+const { skills } = Astro.props;
+---
+
+<section class="card" aria-labelledby="skills-title">
+	<h2 id="skills-title">{skills.title}</h2>
+	<div class="skills-grid">
+		{skills.categories?.map((category) => (
+			<div class="skills-category">
+				<h3>{category.name}</h3>
+				<ul class="skills-list">
+					{category.items?.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem 1.2rem;
+	}
+
+	.skills-category {
+		background: rgba(15, 23, 42, 0.6);
+		border-radius: 0.9rem;
+		border: 1px solid rgba(148, 163, 184, 0.45);
+		padding: 0.75rem 0.9rem;
+	}
+
+	.skills-category h3 {
+		margin: 0 0 0.35rem;
+		font-size: 0.9rem;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--accent-soft);
+	}
+
+	.skills-list {
+		margin: 0.1rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+
+	.skills-list li {
+		margin: 0;
+		padding: 0.16rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(148, 163, 184, 0.55);
+		background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.35), transparent 55%),
+			linear-gradient(to bottom right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8));
+		font-size: 0.78rem;
+		white-space: normal;
+		word-break: break-word;
+	}
+</style>
 <section class="card" aria-labelledby="skills-title">
 	<h2 id="skills-title">Tech Skills</h2>
 	<div class="skills-grid">
