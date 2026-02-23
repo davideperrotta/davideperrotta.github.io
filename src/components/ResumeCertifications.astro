@@ -5,7 +5,7 @@ const { certifications } = Astro.props;
 <section class="card" aria-labelledby="certifications-title">
 	<h2 id="certifications-title">{certifications.title}</h2>
 	<ul class="certifications">
-		{certifications.items?.map((item) => (
+		{certifications.items?.map((item: string) => (
 			<li>{item}</li>
 		))}
 	</ul>

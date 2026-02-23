@@ -5,8 +5,8 @@ const { education } = Astro.props;
 <section class="card" aria-labelledby="education-title">
 	<h2 id="education-title">{education.title}</h2>
 	<ul class="timeline">
-		{education.entries?.map((entry) => (
-			<li>
+		{education.entries?.map((entry: { title: string; meta: string }) => (
+			<li class="timeline-item">
 				<h3>{entry.title}</h3>
 				<p class="entry__meta">{entry.meta}</p>
 			</li>

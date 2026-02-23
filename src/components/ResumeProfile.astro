@@ -4,7 +4,7 @@ const { profile } = Astro.props;
 
 <section class="card" aria-labelledby="summary-title">
 	<h2 id="summary-title">{profile.title}</h2>
-	{profile.paragraphs?.map((paragraph) => (
+	{profile.paragraphs?.map((paragraph: string) => (
 		<p>{paragraph}</p>
 	))}
 </section>

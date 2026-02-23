@@ -43,7 +43,7 @@ const { hero } = Astro.props;
 			</div>
 		</dl>
 		<div class="resume__links">
-			{hero.links?.map((link) => (
+			{hero.links?.map((link: { label: string; url: string }) => (
 				<a href={link.url} rel="noopener noreferrer" target="_blank">
 					{link.label}
 				</a>
