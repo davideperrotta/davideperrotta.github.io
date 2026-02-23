@@ -1,0 +1,47 @@
+---
+const { news } = Astro.props;
+
+const formatDate = (date: string) => {
+	const [year, month, day] = date.split('-');
+	if (!year || !month || !day) return date;
+	return `${day}/${month}/${year}`;
+};
+---
+
+<section class="card" aria-labelledby="news-title">
+	<h2 id="news-title">News</h2>
+
+	{news.items?.length && (
+		<ul class="news-list">
+			{news.items.map((item: { date: string; text: string }) => (
+				<li class="news-item">
+					<time class="news-item__date" datetime={item.date}>{formatDate(item.date)}</time>
+					<p class="news-item__text">{item.text}</p>
+				</li>
+			))}
+		</ul>
+	)}
+</section>
+
+<style>
+	.news-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.news-item__date {
+		display: block;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		margin-bottom: 0.1rem;
+	}
+
+	.news-item__text {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+</style>

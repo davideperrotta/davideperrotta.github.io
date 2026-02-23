@@ -113,6 +113,20 @@ export default config({
         ),
       },
     }),
+    news: singleton({
+      label: 'News',
+      path: 'src/content/news',
+      format: { data: 'yaml' },
+      schema: {
+        items: fields.array(
+          fields.object({
+            date: fields.date({ label: 'Date' }),
+            text: fields.text({ label: 'Post', multiline: true }),
+          }),
+          { label: 'News items' }
+        ),
+      },
+    }),
     links: singleton({
       label: 'Links',
       path: 'src/content/links',
