@@ -3,3 +3,7 @@ items:
     text: >-
       I'm happy to publish the new version of this website, built with Astro. I
       hope you will like it!
+  - date: 2026-02-25
+    text: >-
+      The content of this website is managed with keystatic, a git based CMS
+      without costs
