@@ -13,5 +13,5 @@ export default defineConfig({
 		? 'https://davideperrotta.github.io/'
 		: undefined,
 	base: '/',
-	integrations: isProd ? [react(), keystatic()] : [react(), keystatic()], // enable keystatic in production as preview to be presented
+	integrations: isProd ? [react()] : [react(), keystatic()],
 });
