@@ -10,8 +10,8 @@ export default defineConfig({
 	// In production we deploy to GitHub Pages under /resume-astro/.
 	// In dev we use the default base so /keystatic works correctly.
 	site: isProd
-		? 'https://davideperrotta.github.io/resume-astro/'
+		? 'https://davideperrotta.github.io/'
 		: undefined,
-	base: isProd ? '/resume-astro/' : '/',
+	base: '/',
 	integrations: isProd ? [react()] : [react(), keystatic()],
 });
