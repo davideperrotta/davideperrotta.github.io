@@ -31,7 +31,10 @@ export default config({
             label: fields.text({ label: 'Label' }),
             url: fields.text({ label: 'URL' }),
           }),
-          { label: 'Links' }
+          {
+            label: 'Links',
+            itemLabel: (props) => props.fields.label.value || props.fields.url.value || 'New link',
+          }
         ),
       },
     }),
@@ -43,7 +46,10 @@ export default config({
         title: fields.text({ label: 'Title', defaultValue: 'Profile' }),
         paragraphs: fields.array(
           fields.text({ label: 'Paragraph' }),
-          { label: 'Paragraphs' }
+          {
+            label: 'Paragraphs',
+            itemLabel: (props) => (props.value ? `${props.value.slice(0, 40)}${props.value.length > 40 ? '…' : ''}` : 'New paragraph'),
+          }
         ),
       },
     }),
@@ -59,10 +65,16 @@ export default config({
             meta: fields.text({ label: 'Location and dates' }),
             bullets: fields.array(
               fields.text({ label: 'Bullet' }),
-              { label: 'Responsibilities' }
+              {
+                label: 'Responsibilities',
+                itemLabel: (props) => (props.value ? `${props.value.slice(0, 40)}${props.value.length > 40 ? '…' : ''}` : 'New responsibility'),
+              }
             ),
           }),
-          { label: 'Positions' }
+          {
+            label: 'Positions',
+            itemLabel: (props) => props.fields.role.value || 'New position',
+          }
         ),
         showMoreLabel: fields.text({ label: 'Show more label', defaultValue: 'Show more' }),
         showLessLabel: fields.text({ label: 'Show less label', defaultValue: 'Show less' }),
@@ -79,7 +91,10 @@ export default config({
             title: fields.text({ label: 'Title' }),
             meta: fields.text({ label: 'Meta' }),
           }),
-          { label: 'Entries' }
+          {
+            label: 'Entries',
+            itemLabel: (props) => props.fields.title.value || props.fields.meta.value || 'New entry',
+          }
         ),
       },
     }),
@@ -94,10 +109,16 @@ export default config({
             name: fields.text({ label: 'Category name' }),
             items: fields.array(
               fields.text({ label: 'Skill' }),
-              { label: 'Skills' }
+              {
+                label: 'Skills',
+                itemLabel: (props) => props.value || 'Skill',
+              }
             ),
           }),
-          { label: 'Categories' }
+          {
+            label: 'Categories',
+            itemLabel: (props) => props.fields.name.value || 'New category',
+          }
         ),
       },
     }),
@@ -109,7 +130,10 @@ export default config({
         title: fields.text({ label: 'Title', defaultValue: 'Most Requested Services' }),
         tags: fields.array(
           fields.text({ label: 'Tag' }),
-          { label: 'Tags' }
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value || 'Tag',
+          }
         ),
       },
     }),
@@ -123,7 +147,13 @@ export default config({
             date: fields.date({ label: 'Date' }),
             text: fields.text({ label: 'Post', multiline: true }),
           }),
-          { label: 'News items' }
+          {
+            label: 'News items',
+            itemLabel: (props) =>
+              (props.fields.text.value
+                ? `${props.fields.text.value.slice(0, 40)}${props.fields.text.value.length > 40 ? '…' : ''}`
+                : props.fields.date.value) || 'News item',
+          }
         ),
       },
     }),
@@ -138,7 +168,10 @@ export default config({
             label: fields.text({ label: 'Label' }),
             url: fields.text({ label: 'URL' }),
           }),
-          { label: 'Links' }
+          {
+            label: 'Links',
+            itemLabel: (props) => props.fields.label.value || props.fields.url.value || 'New link',
+          }
         ),
       },
     }),
@@ -150,7 +183,10 @@ export default config({
         title: fields.text({ label: 'Title', defaultValue: 'Certifications' }),
         items: fields.array(
           fields.text({ label: 'Certification' }),
-          { label: 'Items' }
+          {
+            label: 'Items',
+            itemLabel: (props) => props.value || 'Certification',
+          }
         ),
       },
     }),
