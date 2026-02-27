@@ -2,7 +2,45 @@
 import astroLogo from '../assets/astro.svg';
 
 const year = new Date().getFullYear();
-const { title = 'Davide Perrotta · Resume', noindex = false } = Astro.props;
+const {
+	title =
+		'Davide Perrotta · Web developer, software developer and software architect in Milano and Catanzaro (Italy)',
+	description =
+		"Portfolio and resume of Davide Perrotta, web developer, software developer and software architect based between Milano and Catanzaro (Italy). Sviluppatore web, sviluppatore software e architetto software che progetta e realizza applicazioni web moderne e performanti.",
+	noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(
+	Astro.url.pathname || '/',
+	Astro.site ?? 'https://davideperrotta.github.io/',
+).toString();
+
+const personJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Davide Perrotta',
+	jobTitle: 'Web Developer, Software Developer, Software Architect',
+	url: canonicalUrl,
+	address: [
+		{
+			'@type': 'PostalAddress',
+			addressLocality: 'Milano',
+			addressCountry: 'IT',
+		},
+		{
+			'@type': 'PostalAddress',
+			addressLocality: 'Catanzaro',
+			addressCountry: 'IT',
+		},
+	],
+	knowsAbout: [
+		'web development',
+		'software development',
+		'software architecture',
+		'frontend engineering',
+		'backend development',
+	],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -13,7 +51,21 @@ const { title = 'Davide Perrotta · Resume', noindex = false } = Astro.props;
 		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:site_name" content="Davide Perrotta" />
+		<meta property="og:locale" content="en_US" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		<script type="application/ld+json">
+			{JSON.stringify(personJsonLd)}
+		</script>
 	</head>
 	<body>
 		<slot />
