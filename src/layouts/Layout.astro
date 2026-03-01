@@ -65,9 +65,7 @@ const personJsonLd = {
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
-		<script type="application/ld+json">
-			{JSON.stringify(personJsonLd)}
-		</script>
+		<script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
 	</head>
 	<body>
 		<slot />
