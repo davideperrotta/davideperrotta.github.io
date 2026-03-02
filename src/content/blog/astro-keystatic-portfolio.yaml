@@ -1,0 +1,82 @@
+title: Why this portfolio uses Astro and Keystatic CMS
+slug: astro-keystatic-portfolio
+category: blog
+image: /blog-images/astro-keystatic-portfolio/image.svg
+content: >
+  ## Why this portfolio uses Astro and Keystatic CMS
+
+
+  This website is built with **Astro** and **Keystatic CMS**. I chose these
+  technologies because they combine excellent performance, great SEO defaults
+  and a comfortable content editing experience.
+
+
+  ### Benefits of Astro for this portfolio
+
+
+  Astro is a modern framework for building content‑focused sites like portfolios
+  and blogs. Some concrete benefits for this website are:
+
+
+  - **Great performance by default**: Astro ships mostly static HTML and only
+  sends JavaScript when it is really needed. This keeps pages light and fast to
+  load, even on slower connections.
+
+  - **SEO‑friendly architecture**: pages are rendered at build time, with clean
+  URLs such as `/blog/astro-keystatic-portfolio`, predictable metadata and
+  structured content that search engines can easily crawl.
+
+  - **Island architecture with React components**: when I need interactivity
+  (for example small widgets or counters), I can use **React components as
+  islands** inside an otherwise static page. This gives a smooth user experience
+  without turning the whole site into a heavy single‑page app.
+
+  - **Simple deployment as static files**: the whole site can be deployed as
+  pre‑generated static assets, which fits perfectly with platforms like GitHub
+  Pages and static hosting.
+
+
+  ### Benefits of Keystatic CMS
+
+
+  Keystatic is a Git‑based CMS that stores content alongside the codebase. In
+  this project it manages my resume sections and the blog posts.
+
+
+  Some reasons why Keystatic works well here:
+
+
+  - **Content in version control**: every change to blog posts or resume content
+  lives in Git, with history and the ability to review and roll back.
+
+  - **Structured content models**: fields like `title`, `slug`, `category`,
+  `image` and `content` are defined in a schema, so the editor always knows
+  exactly what to fill in and the site can trust the structure at build time.
+
+  - **Good authoring experience**: Keystatic provides a friendly UI on top of
+  YAML files, which makes it easy to add or update content without touching the
+  code.
+
+  - **Works locally and in CI**: the same content lives in the repository, so
+  local development, previews and production builds always use the same source
+  of truth.
+
+
+  ### Why Astro + Keystatic is a strong combo
+
+
+  Combining Astro and Keystatic is a good fit for this portfolio because:
+
+
+  - Astro takes care of **fast, static rendering and SEO‑friendly pages**.
+
+  - Keystatic takes care of **structured content and a smooth editing
+  workflow**.
+
+  - Both tools are **developer‑friendly** and integrate well with TypeScript,
+  modern tooling and React components when needed.
+
+
+  The result is a portfolio that stays fast, easy to maintain and ready to grow
+  with new sections or blog posts without sacrificing performance or search
+  visibility.
