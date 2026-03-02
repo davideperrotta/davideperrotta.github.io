@@ -27,6 +27,7 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 <Layout {title} {description}>
 	<main class="blog-post">
 		<article class="blog-post__card">
+			<a href="/blog" class="blog-post__back button">← Back to blog</a>
 			<header class="blog-post__header">
 				<h1 class="blog-post__title">{page.title}</h1>
 				{page.image && (
@@ -54,6 +55,29 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 		padding: 1.75rem 1.75rem 2rem;
 		border: 1px solid rgba(148, 163, 184, 0.3);
 		box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+	}
+
+	.blog-post__back.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-bottom: 0.9rem;
+		padding: 0.45rem 1rem;
+		border-radius: 999px;
+		border: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: #f9fafb;
+		background: var(--accent);
+		box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
+		transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.18s ease;
+	}
+
+	.blog-post__back.button:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 14px 32px rgba(15, 23, 42, 0.7);
+		background: var(--accent-strong);
 	}
 
 	.blog-post__title {

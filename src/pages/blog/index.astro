@@ -13,7 +13,10 @@ const description = 'Articles and notes by Davide Perrotta.';
 <Layout {title} {description}>
 	<main class="blog-index">
 		<section class="blog-index__card">
-			<h1 class="blog-index__title">Blog</h1>
+			<header class="blog-index__header">
+				<h1 class="blog-index__title">Blog</h1>
+				<a href="/" class="blog-index__back button">← Back to site</a>
+			</header>
 			{orderedPosts.length === 0 ? (
 				<p class="blog-index__empty">No posts published yet.</p>
 			) : (
@@ -52,10 +55,40 @@ const description = 'Articles and notes by Davide Perrotta.';
 		box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
 	}
 
+	.blog-index__header {
+		margin-bottom: 1.25rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
 	.blog-index__title {
-		margin: 0 0 1.25rem;
+		margin: 0;
 		font-size: 1.8rem;
 		letter-spacing: 0.03em;
+	}
+
+	.blog-index__back.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.45rem 1rem;
+		border-radius: 999px;
+		border: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: #f9fafb;
+		background: var(--accent);
+		box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
+		transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.18s ease;
+	}
+
+	.blog-index__back.button:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 14px 32px rgba(15, 23, 42, 0.7);
+		background: var(--accent-strong);
 	}
 
 	.blog-index__empty {
