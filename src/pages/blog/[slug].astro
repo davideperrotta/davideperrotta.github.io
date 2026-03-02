@@ -111,6 +111,9 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 		background: var(--accent);
 		box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
 		transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.18s ease;
+		position: sticky;
+		top: 1.25rem;
+		z-index: 10;
 	}
 
 	.blog-post__back.button:hover {

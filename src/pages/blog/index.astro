@@ -49,9 +49,9 @@ function getExcerptHtml(markdown?: string) {
 
 <Layout {title} {description}>
 	<main class="blog-index">
+		<a href="/" class="blog-index__back button">← Back to site</a>
 		<header class="blog-index__header">
 			<h1 class="blog-index__title">Blog</h1>
-			<a href="/" class="blog-index__back button">← Back to site</a>
 		</header>
 		<section class="blog-index__card">
 			{blogPosts.length === 0 && seoPosts.length === 0 ? (
@@ -169,6 +169,8 @@ function getExcerptHtml(markdown?: string) {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
+		margin-bottom: 1rem;
+		margin-left: auto;
 		padding: 0.45rem 1rem;
 		border-radius: 999px;
 		border: none;
@@ -179,6 +181,9 @@ function getExcerptHtml(markdown?: string) {
 		background: var(--accent);
 		box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
 		transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.18s ease;
+		position: sticky;
+		top: 1.25rem;
+		z-index: 10;
 	}
 
 	.blog-index__back.button:hover {
