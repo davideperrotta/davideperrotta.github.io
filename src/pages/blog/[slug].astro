@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { keystaticReader } from '../../keystatic';
+import { marked } from 'marked';
+
+interface Props {
+	page: {
+		slug: string;
+		title: string;
+		image?: string | null;
+		content?: string;
+	};
+}
+
+export async function getStaticPaths() {
+	const posts = await keystaticReader.collections.blog.all();
+	return posts.map((post) => ({ params: { slug: post.slug }, props: { page: { slug: post.slug, ...post.entry } } }));
+}
+
+const { page } = Astro.props as Props;
+const htmlContent = marked.parse(page.content || '');
+
+const title = `${page.title} · Davide Perrotta`;
+const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta';
+---
+
+<Layout {title} {description}>
+	<main class="blog-post">
+		<article class="blog-post__card">
+			<header class="blog-post__header">
+				<h1 class="blog-post__title">{page.title}</h1>
+				{page.image && (
+					<img
+						class="blog-post__image"
+						src={page.image}
+						alt={page.title}
+						loading="lazy"
+					/>
+				)}
+			</header>
+			<section class="blog-post__content" set:html={htmlContent} />
+		</article>
+	</main>
+
+<style>
+	.blog-post {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.blog-post__card {
+		background: rgba(15, 23, 42, 0.85);
+		border-radius: 1.25rem;
+		padding: 1.75rem 1.75rem 2rem;
+		border: 1px solid rgba(148, 163, 184, 0.3);
+		box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+	}
+
+	.blog-post__title {
+		margin: 0 0 1rem;
+		font-size: 1.8rem;
+		letter-spacing: 0.03em;
+	}
+
+	.blog-post__image {
+		width: 100%;
+		max-height: 360px;
+		object-fit: cover;
+		border-radius: 0.9rem;
+		margin: 0.5rem 0 1.25rem;
+		border: 1px solid rgba(148, 163, 184, 0.4);
+	}
+
+	.blog-post__content {
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.blog-post__content h2,
+	.blog-post__content h3,
+	.blog-post__content h4 {
+		margin-top: 1.6rem;
+		margin-bottom: 0.6rem;
+	}
+
+	.blog-post__content p {
+		margin: 0.6rem 0;
+	}
+
+	.blog-post__content ul,
+	.blog-post__content ol {
+		margin: 0.6rem 0 0.6rem 1.5rem;
+	}
+
+	.blog-post__content a {
+		color: var(--accent-soft);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+	}
+
+	.blog-post__content strong {
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.blog-post__card {
+			padding: 1.25rem 1.25rem 1.6rem;
+		}
+
+		.blog-post__title {
+			font-size: 1.5rem;
+		}
+	}
+</style>
+
+</Layout>

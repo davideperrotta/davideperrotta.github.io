@@ -1,8 +1,34 @@
-import { config, fields, singleton } from '@keystatic/core';
+import { config, fields, singleton, collection } from '@keystatic/core';
 
 export default config({
   storage: {
     kind: 'local',
+  },
+  collections: {
+    blog: collection({
+      label: 'Blog posts',
+      path: 'src/content/blog/*',
+      format: { data: 'yaml' },
+      slugField: 'slug',
+      schema: {
+        title: fields.text({ label: 'Title' }),
+        slug: fields.slug({
+          name: {
+            label: 'Title (for slug suggestion, optional)',
+          },
+          slug: {
+            label: 'Slug',
+            description: 'Used in the URL /blog/{slug}',
+          },
+        }),
+        image: fields.image({
+          label: 'Image',
+          directory: 'public/blog-images',
+          publicPath: '/blog-images/',
+        }),
+        content: fields.text({ label: 'Content (Markdown)', multiline: true }),
+      },
+    }),
   },
   singletons: {
     hero: singleton({
