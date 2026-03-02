@@ -18,9 +18,20 @@ const canonicalUrl = new URL(
 const personJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
+	'@id': `${canonicalUrl}#person`,
 	name: 'Davide Perrotta',
+	alternateName: 'Davide Perrotta · Sviluppatore web e software',
 	jobTitle: 'Web Developer, Software Developer, Software Architect',
 	url: canonicalUrl,
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': canonicalUrl,
+	},
+	sameAs: [
+		'https://www.davideperrotta.it',
+		'https://github.com/davideperrotta',
+		'https://www.linkedin.com/in/davideperrotta/',
+	],
 	address: [
 		{
 			'@type': 'PostalAddress',
@@ -33,12 +44,97 @@ const personJsonLd = {
 			addressCountry: 'IT',
 		},
 	],
+	nationality: {
+		'@type': 'Country',
+		name: 'Italy',
+	},
+	homeLocation: [
+		{
+			'@type': 'City',
+			name: 'Milano',
+			addressCountry: 'IT',
+		},
+		{
+			'@type': 'City',
+			name: 'Catanzaro',
+			addressCountry: 'IT',
+		},
+	],
+	knowsLanguage: ['it-IT', 'en'],
+	hasOccupation: [
+		{
+			'@type': 'Occupation',
+			name: 'Web Developer',
+			occupationalCategory: 'Software and Applications Developers',
+			description: 'Sviluppatore web e frontend',
+		},
+		{
+			'@type': 'Occupation',
+			name: 'Software Developer',
+			description: 'Sviluppatore software e ingegnere IT',
+		},
+		{
+			'@type': 'Occupation',
+			name: 'Software Architect',
+			description: 'Architetto software e ingegnere IT',
+		},
+	],
 	knowsAbout: [
 		'web development',
 		'software development',
 		'software architecture',
 		'frontend engineering',
 		'backend development',
+		'web developer',
+		'software developer',
+		'software architect',
+		'IT engineer',
+		'sviluppo web',
+		'sviluppo software',
+		'architettura software',
+		'ingegneria del software',
+		'ingegnere informatico',
+		'sviluppatore web',
+		'sviluppatore software',
+		'architetto software',
+		'ingegnere IT',
+	],
+};
+
+const websiteJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	'@id': `${canonicalUrl}#website`,
+	url: canonicalUrl,
+	name: 'Davide Perrotta · Web & Software Developer',
+	inLanguage: ['it-IT', 'en'],
+	description,
+	publisher: {
+		'@id': `${canonicalUrl}#person`,
+	},
+};
+
+const webPageJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	'@id': canonicalUrl,
+	url: canonicalUrl,
+	name: title,
+	inLanguage: ['it-IT', 'en'],
+	description,
+	isPartOf: {
+		'@id': `${canonicalUrl}#website`,
+	},
+	about: [
+		'web developer',
+		'software developer',
+		'software architect',
+		'IT engineer',
+		'sviluppatore web',
+		'sviluppatore software',
+		'architetto software',
+		'ingegnere IT',
+		'ingegnere informatico',
 	],
 };
 ---
@@ -66,6 +162,8 @@ const personJsonLd = {
 		<meta name="twitter:description" content={description} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
 	</head>
 	<body>
 		<slot />
