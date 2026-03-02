@@ -49,11 +49,11 @@ function getExcerptHtml(markdown?: string) {
 
 <Layout {title} {description}>
 	<main class="blog-index">
+		<header class="blog-index__header">
+			<h1 class="blog-index__title">Blog</h1>
+			<a href="/" class="blog-index__back button">← Back to site</a>
+		</header>
 		<section class="blog-index__card">
-			<header class="blog-index__header">
-				<h1 class="blog-index__title">Blog</h1>
-				<a href="/" class="blog-index__back button">← Back to site</a>
-			</header>
 			{blogPosts.length === 0 && seoPosts.length === 0 ? (
 				<p class="blog-index__empty">No posts published yet.</p>
 			) : (
@@ -139,7 +139,7 @@ function getExcerptHtml(markdown?: string) {
 
 <style>
 	.blog-index {
-		max-width: 720px;
+		max-width: 1160px;
 		margin: 0 auto;
 	}
 
