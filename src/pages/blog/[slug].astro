@@ -7,6 +7,7 @@ interface Props {
 	page: {
 		slug: string;
 		title: string;
+		date?: string;
 		image?: string | null;
 		content?: string;
 	};
@@ -18,6 +19,18 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props as Props;
+
+let formattedDate: string | null = null;
+if (page.date) {
+	const parsed = new Date(page.date);
+	if (!Number.isNaN(parsed.getTime())) {
+		formattedDate = parsed.toLocaleDateString('en-GB', {
+			day: '2-digit',
+			month: 'short',
+			year: 'numeric',
+		});
+	}
+}
 
 // Remove a leading H1 in the markdown body if it duplicates the page title,
 // so we keep a single main H1 for better SEO semantics.
@@ -53,6 +66,9 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 			<a href="/blog" class="blog-post__back button">← Back to blog</a>
 			<header class="blog-post__header">
 				<h1 class="blog-post__title">{page.title}</h1>
+				{formattedDate && (
+					<time class="blog-post__date" datetime={page.date}>{formattedDate}</time>
+				)}
 				{page.image && (
 					<img
 						class="blog-post__image"
@@ -107,6 +123,13 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 		margin: 0 0 1rem;
 		font-size: 1.8rem;
 		letter-spacing: 0.03em;
+	}
+
+	.blog-post__date {
+		margin-bottom: 0.75rem;
+		display: block;
+		font-size: 0.9rem;
+		color: var(--text-muted);
 	}
 
 	.blog-post__image {

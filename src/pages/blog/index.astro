@@ -14,6 +14,17 @@ const seoPosts = orderedPosts.filter((post) => post.entry.category === 'seo');
 const title = 'Blog · Davide Perrotta';
 const description = 'Articles and notes by Davide Perrotta.';
 
+function formatDate(date?: string) {
+	if (!date) return '';
+	const parsed = new Date(date);
+	if (Number.isNaN(parsed.getTime())) return '';
+	return parsed.toLocaleDateString('en-GB', {
+		day: '2-digit',
+		month: 'short',
+		year: 'numeric',
+	});
+}
+
 function getExcerptHtml(markdown?: string) {
 	if (!markdown) return '';
 	const lines = markdown.split('\n');
@@ -52,13 +63,31 @@ function getExcerptHtml(markdown?: string) {
 							{blogPosts.map((post) => (
 								<li class="blog-index__item">
 									<a href={`/blog/${post.slug}`} class="blog-index__link">
-										<span class="blog-index__item-title">{post.entry.title}</span>
-										{post.entry.content && (
-											<span
-												class="blog-index__item-excerpt"
-												set:html={getExcerptHtml(post.entry.content)}
-											/>
-										)}
+											{post.entry.image && (
+												<img
+													class="blog-index__item-image"
+													src={post.entry.image}
+													alt={post.entry.title}
+													loading="lazy"
+												/>
+											)}
+											<div class="blog-index__item-body">
+												<span class="blog-index__item-title">{post.entry.title}</span>
+												{post.entry.date && (
+													<time
+														class="blog-index__item-date"
+														datetime={post.entry.date}
+													>
+														{formatDate(post.entry.date as string)}
+													</time>
+												)}
+												{post.entry.content && (
+													<span
+														class="blog-index__item-excerpt"
+														set:html={getExcerptHtml(post.entry.content)}
+													/>
+												)}
+											</div>
 									</a>
 								</li>
 							))}
@@ -72,13 +101,31 @@ function getExcerptHtml(markdown?: string) {
 								{seoPosts.map((post) => (
 									<li class="blog-index__item">
 										<a href={`/blog/${post.slug}`} class="blog-index__link">
-											<span class="blog-index__item-title">{post.entry.title}</span>
-											{post.entry.content && (
-												<span
-													class="blog-index__item-excerpt"
-													set:html={getExcerptHtml(post.entry.content)}
-												/>
-											)}
+												{post.entry.image && (
+													<img
+														class="blog-index__item-image"
+														src={post.entry.image}
+														alt={post.entry.title}
+														loading="lazy"
+													/>
+												)}
+												<div class="blog-index__item-body">
+													<span class="blog-index__item-title">{post.entry.title}</span>
+													{post.entry.date && (
+														<time
+															class="blog-index__item-date"
+															datetime={post.entry.date}
+														>
+															{formatDate(post.entry.date as string)}
+														</time>
+													)}
+													{post.entry.content && (
+														<span
+															class="blog-index__item-excerpt"
+															set:html={getExcerptHtml(post.entry.content)}
+														/>
+													)}
+												</div>
 										</a>
 									</li>
 								))}
@@ -160,8 +207,8 @@ function getExcerptHtml(markdown?: string) {
 
 	.blog-index__link {
 		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
+		align-items: flex-start;
+		gap: 0.75rem;
 		padding: 0.75rem 0.5rem;
 		border-radius: 0.75rem;
 		text-decoration: none;
@@ -176,6 +223,30 @@ function getExcerptHtml(markdown?: string) {
 
 	.blog-index__item-title {
 		font-weight: 600;
+	}
+
+	.blog-index__item-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.blog-index__item-date {
+		display: block;
+		margin-top: 0.05rem;
+		margin-bottom: 0.05rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+
+	.blog-index__item-image {
+		flex-shrink: 0;
+		width: 80px;
+		height: 80px;
+		border-radius: 0.6rem;
+		object-fit: cover;
+		border: 1px solid rgba(148, 163, 184, 0.4);
+		background-color: rgba(15, 23, 42, 0.8);
 	}
 
 	.blog-index__item-excerpt {

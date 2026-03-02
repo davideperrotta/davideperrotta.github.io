@@ -12,6 +12,7 @@ export default config({
       slugField: 'slug',
       schema: {
         title: fields.text({ label: 'Title' }),
+        date: fields.date({ label: 'Date' }),
         slug: fields.slug({
           name: {
             label: 'Title (for slug suggestion, optional)',
