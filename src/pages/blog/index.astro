@@ -6,6 +6,11 @@ import { marked } from 'marked';
 const posts = await keystaticReader.collections.blog.all();
 const orderedPosts = posts.toSorted((a, b) => a.slug.localeCompare(b.slug));
 
+const blogPosts = orderedPosts.filter(
+	(post) => post.entry.category === 'blog' || post.entry.category === undefined,
+);
+const seoPosts = orderedPosts.filter((post) => post.entry.category === 'seo');
+
 const title = 'Blog · Davide Perrotta';
 const description = 'Articles and notes by Davide Perrotta.';
 
@@ -38,24 +43,49 @@ function getExcerptHtml(markdown?: string) {
 				<h1 class="blog-index__title">Blog</h1>
 				<a href="/" class="blog-index__back button">← Back to site</a>
 			</header>
-			{orderedPosts.length === 0 ? (
+			{blogPosts.length === 0 && seoPosts.length === 0 ? (
 				<p class="blog-index__empty">No posts published yet.</p>
 			) : (
-				<ul class="blog-index__list">
-					{orderedPosts.map((post) => (
-						<li class="blog-index__item">
-							<a href={`/blog/${post.slug}`} class="blog-index__link">
-								<span class="blog-index__item-title">{post.entry.title}</span>
-								{post.entry.content && (
-									<span
-										class="blog-index__item-excerpt"
-										set:html={getExcerptHtml(post.entry.content)}
-									/>
-								)}
-							</a>
-						</li>
-					))}
-				</ul>
+				<>
+					{blogPosts.length > 0 && (
+						<ul class="blog-index__list">
+							{blogPosts.map((post) => (
+								<li class="blog-index__item">
+									<a href={`/blog/${post.slug}`} class="blog-index__link">
+										<span class="blog-index__item-title">{post.entry.title}</span>
+										{post.entry.content && (
+											<span
+												class="blog-index__item-excerpt"
+												set:html={getExcerptHtml(post.entry.content)}
+											/>
+										)}
+									</a>
+								</li>
+							))}
+						</ul>
+					)}
+
+					{seoPosts.length > 0 && (
+						<details class="blog-index__seo" role="group">
+							<summary class="blog-index__seo-summary">Articoli SEO</summary>
+							<ul class="blog-index__list blog-index__list--seo">
+								{seoPosts.map((post) => (
+									<li class="blog-index__item">
+										<a href={`/blog/${post.slug}`} class="blog-index__link">
+											<span class="blog-index__item-title">{post.entry.title}</span>
+											{post.entry.content && (
+												<span
+													class="blog-index__item-excerpt"
+													set:html={getExcerptHtml(post.entry.content)}
+												/>
+											)}
+										</a>
+									</li>
+								))}
+							</ul>
+						</details>
+					)}
+				</>
 			)}
 		</section>
 	</main>
@@ -151,6 +181,25 @@ function getExcerptHtml(markdown?: string) {
 	.blog-index__item-excerpt {
 		font-size: 0.9rem;
 		color: var(--text-muted);
+	}
+
+	.blog-index__seo {
+		margin-top: 1.75rem;
+	}
+
+	.blog-index__seo-summary {
+		cursor: pointer;
+		font-size: 0.9rem;
+		color: var(--accent-soft);
+		list-style: none;
+	}
+
+	.blog-index__seo[open] .blog-index__seo-summary {
+		color: #e5e7eb;
+	}
+
+	.blog-index__list--seo {
+		margin-top: 0.75rem;
 	}
 
 	@media (max-width: 640px) {

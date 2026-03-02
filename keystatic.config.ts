@@ -21,6 +21,14 @@ export default config({
             description: 'Used in the URL /blog/{slug}',
           },
         }),
+        category: fields.select({
+          label: 'Category',
+          options: [
+            { label: 'Blog', value: 'blog' },
+            { label: 'SEO', value: 'seo' },
+          ],
+          defaultValue: 'blog',
+        }),
         image: fields.image({
           label: 'Image',
           directory: 'public/blog-images',
