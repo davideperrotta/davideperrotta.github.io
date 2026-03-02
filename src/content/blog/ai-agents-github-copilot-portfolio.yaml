@@ -1,0 +1,178 @@
+title: How I built this portfolio with AI agents and GitHub Copilot
+date: 2026-03-02
+slug: ai-agents-github-copilot-portfolio
+category: blog
+image: /blog-images/ai-agents-github-copilot-portfolio/image.jpg
+content: >
+  ## How I built this portfolio with AI agents and GitHub Copilot
+
+
+  This website was designed, developed and shipped in a very short time because
+  I worked **side by side with AI agents** – mainly **GitHub Copilot in Visual
+  Studio Code** – instead of hand‑coding every detail by myself.
+
+
+  The result is a fast Astro site with a clean Keystatic CMS, SEO‑optimized blog
+  posts, and a custom visual style – all created with the help of AI.
+
+
+  ---
+
+
+  ### Built in hours, not weeks
+
+
+  In the past, creating a portfolio like this would have required several
+  evenings of work: designing the layout, wiring the routes, setting up a CMS,
+  fine‑tuning the styles, and writing the content.
+
+
+  This time I took a different approach:
+
+
+  - I opened **Visual Studio Code**.
+
+  - I let **Copilot (as an agent)** drive most of the implementation.
+
+  - I focused on **high‑level decisions and code reviews**, instead of typing
+  everything line by line.
+
+
+  Thanks to that, I was able to go from idea to deployed portfolio in a very
+  short time while still keeping full control over the architecture and quality.
+
+
+  ---
+
+
+  ### What Copilot helped me with on this site
+
+
+  Copilot was not just an "autocomplete" tool. On this project it acted as a
+  real assistant across the whole stack:
+
+
+  - **SEO optimization**: it helped me structure pages, headings, metadata and
+  internal links in a way that is friendly to search engines.
+
+  - **Writing SEO‑oriented articles**: for the blog, it suggested outlines,
+  headlines and keyword‑aware paragraphs that I then reviewed and adapted to my
+  voice.
+
+  - **Code optimization**: it proposed refactors, cleaner patterns and small
+  performance improvements for the Astro pages and components.
+
+  - **CMS structure**: it assisted in designing the Keystatic collections and
+  singletons (resume sections, skills, services, blog posts) so that content
+  stays structured and easy to edit.
+
+  - **Styling and layout**: most of the CSS and layout ideas started from
+  AI‑generated suggestions that I then tuned to match my taste and accessibility
+  expectations.
+
+
+  In other words: I used AI to **accelerate every layer** of this website, from
+  content to code to design.
+
+
+  ---
+
+
+  ### Years of working this way with AI agents
+
+
+  This is not an experiment for me – it is how I have been working for several
+  years.
+
+
+  I regularly use **AI agents inside my IDEs**:
+
+
+  - In **Visual Studio Code**, GitHub Copilot acts as a partner for
+  JavaScript/TypeScript, backend work and static sites like this portfolio.
+
+  - In **Android Studio**, I use agents like **Gemini** to speed up Flutter
+  development, from widget trees to state management and integration code.
+
+
+  By delegating boilerplate and repetitive tasks to AI, I can create **many more
+  things in the same amount of time**: more features, more experiments, more
+  articles, more side projects.
+
+
+  ---
+
+
+  ### Prompting is the new pseudo‑code
+
+
+  The key to making this workflow effective is not magic – it is how you **write
+  prompts**.
+
+
+  As a senior developer, I treat prompts like **structured pseudo‑code**:
+
+
+  - I describe the desired behavior, constraints and edge cases.
+
+  - I outline the architecture (components, modules, data flow).
+
+  - I specify style and UX requirements when I ask for UI code.
+
+
+  Instead of writing pseudo‑code in comments and then translating it into real
+  code, I write that pseudo‑code **directly in the prompt**. The AI agent turns
+  it into working code that I then review, test and refine.
+
+
+  This keeps my mental model at a higher level while still producing precise,
+  production‑ready implementations.
+
+
+  ---
+
+
+  ### Boosting production, not replacing expertise
+
+
+  It is important to highlight that AI is **not** replacing my expertise. On the
+  contrary, it lets me use my experience as a senior developer **at maximum
+  potential**:
+
+
+  - I spend more time on architecture, trade‑offs and code reviews.
+
+  - I quickly spot and fix weak suggestions from the AI.
+
+  - I enforce good patterns, performance and maintainability.
+
+
+  The combination of **strong fundamentals** + **AI acceleration** is what
+  really improves my productivity. I can ship more, iterate faster and explore
+  new ideas without compromising on quality.
+
+
+  ---
+
+
+  ### Why this matters for future projects
+
+
+  This portfolio is just one concrete example of what this workflow enables:
+  shipping a complete, SEO‑friendly, CMS‑backed website in a fraction of the
+  time.
+
+
+  For future projects – whether it is another site, a backend service, a mobile
+  app or a small internal tool – I will keep using AI agents inside my IDEs to:
+
+
+  - move from idea to prototype in hours,
+
+  - keep codebases clean and maintainable,
+
+  - and dedicate more energy to the parts where human judgment, experience and
+  creativity matter the most.
+
+
+  This site is the visible result of that approach.
