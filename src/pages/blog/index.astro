@@ -8,6 +8,27 @@ const orderedPosts = posts.toSorted((a, b) => a.slug.localeCompare(b.slug));
 
 const title = 'Blog · Davide Perrotta';
 const description = 'Articles and notes by Davide Perrotta.';
+
+function getExcerptHtml(markdown?: string) {
+	if (!markdown) return '';
+	const lines = markdown.split('\n');
+	let removedHeading = false;
+	const filtered: string[] = [];
+
+	for (const line of lines) {
+		if (!removedHeading) {
+			if (/^#{1,6}\s+/.test(line)) {
+				removedHeading = true;
+				continue;
+			}
+		}
+		filtered.push(line);
+	}
+
+	const body = filtered.join('\n');
+	const firstBlock = (body.split(/\n\n+/)[0] || '').slice(0, 220);
+	return marked.parse(firstBlock);
+}
 ---
 
 <Layout {title} {description}>
@@ -28,9 +49,7 @@ const description = 'Articles and notes by Davide Perrotta.';
 								{post.entry.content && (
 									<span
 										class="blog-index__item-excerpt"
-										set:html={marked.parse(
-											(post.entry.content.split(/\n\n+/)[0] || '').slice(0, 200),
-										)}
+										set:html={getExcerptHtml(post.entry.content)}
 									/>
 								)}
 							</a>

@@ -18,7 +18,30 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props as Props;
-const htmlContent = marked.parse(page.content || '');
+
+// Remove a leading H1 in the markdown body if it duplicates the page title,
+// so we keep a single main H1 for better SEO semantics.
+let markdownBody = page.content || '';
+const lines = markdownBody.split('\n');
+let removedFirstHeading = false;
+const filteredLines = [] as string[];
+
+for (const line of lines) {
+	if (!removedFirstHeading) {
+		const match = line.match(/^#\s+(.+)$/);
+		if (match) {
+			const headingText = match[1].trim();
+			if (headingText === page.title.trim()) {
+				removedFirstHeading = true;
+				continue;
+			}
+		}
+	}
+	filteredLines.push(line);
+}
+
+markdownBody = filteredLines.join('\n');
+const htmlContent = marked.parse(markdownBody);
 
 const title = `${page.title} · Davide Perrotta`;
 const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta';
