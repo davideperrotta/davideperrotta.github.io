@@ -62,8 +62,8 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 
 <Layout {title} {description}>
 	<main class="blog-post">
+		<a href="/blog" class="blog-post__back button">← Back to blog</a>
 		<article class="blog-post__card">
-			<a href="/blog" class="blog-post__back button">← Back to blog</a>
 			<header class="blog-post__header">
 				<h1 class="blog-post__title">{page.title}</h1>
 				{formattedDate && (
@@ -101,6 +101,7 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 		align-items: center;
 		gap: 0.35rem;
 		margin-bottom: 0.9rem;
+		margin-left: auto;
 		padding: 0.45rem 1rem;
 		border-radius: 999px;
 		border: none;
