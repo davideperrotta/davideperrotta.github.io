@@ -4,6 +4,7 @@ import ResumeHero from '../components/ResumeHero.astro';
 import ResumeProfile from '../components/ResumeProfile.astro';
 import ResumeExperience from '../components/ResumeExperience.astro';
 import ResumeEducation from '../components/ResumeEducation.astro';
+import ResumeProducts from '../components/ResumeProducts.astro';
 import ResumeServices from '../components/ResumeServices.astro';
 import ResumeSkills from '../components/ResumeSkills.astro';
 import ResumeNews from '../components/ResumeNews.astro';
@@ -17,6 +18,7 @@ const experience = await keystaticReader.singletons.experience.read();
 const education = await keystaticReader.singletons.education.read();
 const skills = await keystaticReader.singletons.skills.read();
 const services = await keystaticReader.singletons.services.read();
+const products = await keystaticReader.singletons.products.read();
 const news = await keystaticReader.singletons.news.read();
 const links = await keystaticReader.singletons.links.read();
 const certifications = await keystaticReader.singletons.certifications.read();
@@ -30,6 +32,7 @@ const certifications = await keystaticReader.singletons.certifications.read();
 			<section class="resume__column resume__column--main">
 				<ResumeProfile profile={profile} />
 				<ResumeEducation education={education} />
+				<ResumeProducts products={products} />
 				<ResumeSkills skills={skills} />
 			</section>
 

@@ -1,0 +1,39 @@
+title: Products I build
+lead: >-
+  I design and build web platforms, mobile apps and backends where people
+  actually work: private areas, dashboards, workflows and integrations that
+  must stay fast, reliable and secure.
+items:
+  - title: Web portals & private areas
+    body: >-
+      Interactive web portals with custom applications to manage private areas,
+      self-service tools and internal workflows.
+    tags:
+      - Energy
+      - Banking
+      - Automotive
+  - title: E-commerce & transactions
+    body: >-
+      High-traffic portals where payments and transactions happen every day:
+      scalable, cloud-ready and designed with security in mind.
+    tags:
+      - Online payments
+      - Scalable in cloud
+      - Private & secure areas
+  - title: Mobile apps
+    body: >-
+      Cross-platform mobile apps built with Flutter and React Native, connected
+      to modern APIs and backends so data and flows stay in sync across devices.
+    tags:
+      - Flutter
+      - React Native
+      - iOS & Android
+  - title: Backend, APIs & data
+    body: >-
+      Backends and APIs that connect everything: SQL and NoSQL databases,
+      caching layers and integrations designed to be reliable and easy to
+      evolve.
+    tags:
+      - REST & GraphQL APIs
+      - SQL & NoSQL databases
+      - Caching & performance

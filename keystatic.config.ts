@@ -172,6 +172,32 @@ export default config({
         ),
       },
     }),
+    products: singleton({
+      label: 'Products',
+      path: 'src/content/products',
+      format: { data: 'yaml' },
+      schema: {
+        title: fields.text({ label: 'Title', defaultValue: 'Products I build' }),
+        lead: fields.text({ label: 'Lead', multiline: true }),
+        items: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Block title' }),
+            body: fields.text({ label: 'Body', multiline: true }),
+            tags: fields.array(
+              fields.text({ label: 'Tag' }),
+              {
+                label: 'Tags',
+                itemLabel: (props) => props.value || 'Tag',
+              }
+            ),
+          }),
+          {
+            label: 'Product blocks',
+            itemLabel: (props) => props.fields.title.value || 'Product block',
+          }
+        ),
+      },
+    }),
     news: singleton({
       label: 'News',
       path: 'src/content/news',

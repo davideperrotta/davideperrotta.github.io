@@ -1,0 +1,83 @@
+---
+const { products } = Astro.props as {
+	products: {
+		title: string;
+		lead?: string;
+		items?: { title: string; body: string; tags?: string[] }[];
+	};
+};
+---
+
+<section class="card products" aria-labelledby="products-title">
+	<h2 id="products-title">{products.title}</h2>
+	{products.lead && <p class="products__lead">{products.lead}</p>}
+	{products.items && products.items.length > 0 && (
+		<div class="products__grid">
+			{products.items.map((item) => (
+				<article class="products__item">
+					<h3>{item.title}</h3>
+					<p>{item.body}</p>
+					{item.tags && item.tags.length > 0 && (
+						<ul class="products__tags" aria-label="Product focus">
+							{item.tags.map((tag) => (
+								<li>{tag}</li>
+							))}
+						</ul>
+					)}
+				</article>
+			))}
+		</div>
+	)}
+</section>
+
+<style>
+	.products {
+		margin-top: 0.75rem;
+	}
+
+	.products__lead {
+		margin: 0 0 0.9rem;
+		font-size: 0.9rem;
+		color: var(--text-muted);
+	}
+
+	.products__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	.products__item h3 {
+		margin: 0 0 0.3rem;
+		font-size: 0.95rem;
+	}
+
+	.products__item p {
+		margin: 0 0 0.7rem;
+		font-size: 0.88rem;
+		color: #e5e7eb;
+	}
+
+	.products__tags {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+
+	.products__tags li {
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid rgba(148, 163, 184, 0.6);
+		background: rgba(15, 23, 42, 0.75);
+		font-size: 0.75rem;
+	}
+
+	@media (max-width: 780px) {
+		.products__grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>
