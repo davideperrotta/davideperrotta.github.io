@@ -63,21 +63,21 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 <Layout {title} {description}>
 	<main class="blog-post">
 		<a href="/blog" class="blog-post__back button">← Back to blog</a>
+		<header class="blog-post__header">
+			<h1 class="blog-post__title">{page.title}</h1>
+			{formattedDate && (
+				<time class="blog-post__date" datetime={page.date}>{formattedDate}</time>
+			)}
+			{page.image && (
+				<img
+					class="blog-post__image"
+					src={page.image}
+					alt={page.title}
+					loading="lazy"
+				/>
+			)}
+		</header>
 		<article class="blog-post__card">
-			<header class="blog-post__header">
-				<h1 class="blog-post__title">{page.title}</h1>
-				{formattedDate && (
-					<time class="blog-post__date" datetime={page.date}>{formattedDate}</time>
-				)}
-				{page.image && (
-					<img
-						class="blog-post__image"
-						src={page.image}
-						alt={page.title}
-						loading="lazy"
-					/>
-				)}
-			</header>
 			<section class="blog-post__content" set:html={htmlContent} />
 		</article>
 	</main>
@@ -86,6 +86,10 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 	.blog-post {
 		max-width: 1160px;
 		margin: 0 auto;
+	}
+
+	.blog-post__header {
+		margin-bottom: 0.75rem;
 	}
 
 	.blog-post__card {
