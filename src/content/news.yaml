@@ -12,3 +12,8 @@ items:
       Added new blog section. This section, managed with Keystatic CMS, was
       created to optimize SEO, and it will be used also to create other type of
       contents.
+  - date: 2026-03-03
+    text: >-
+      My Curriculum Vitae / Resume is available for download in links above. It
+      is updated by build process every time that I deploy this website, because
+      the content is the same
