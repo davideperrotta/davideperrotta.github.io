@@ -60,6 +60,7 @@ const { skills } = Astro.props;
 
 	.skills-slider__viewport {
 		position: relative;
+		transition: min-height 0.18s ease;
 	}
 
 	.skills-slide {
@@ -175,12 +176,32 @@ const { skills } = Astro.props;
     if (!slides.length) return;
 
     let index = 0;
+		const viewport = slider.querySelector('.skills-slider__viewport');
     const indexEl = slider.querySelector('[data-skills-index]');
     const totalEl = slider.querySelector('[data-skills-total]');
     const prevBtn = slider.querySelector('[data-skills-prev]');
     const nextBtn = slider.querySelector('[data-skills-next]');
 
     if (totalEl) totalEl.textContent = String(slides.length);
+
+		const measureHeights = () => {
+			if (!viewport) return;
+			let maxHeight = 0;
+			slides.forEach((slide) => {
+				const wasActive = slide.classList.contains('skills-slide--active');
+				if (!wasActive) {
+					slide.classList.add('skills-slide--active');
+				}
+				const h = slide.offsetHeight;
+				if (h > maxHeight) maxHeight = h;
+				if (!wasActive) {
+					slide.classList.remove('skills-slide--active');
+				}
+			});
+			if (maxHeight > 0) {
+				viewport.style.minHeight = `${maxHeight}px`;
+			}
+		};
 
     const update = () => {
       slides.forEach((slide, i) => {
@@ -189,7 +210,8 @@ const { skills } = Astro.props;
       if (indexEl) indexEl.textContent = String(index + 1);
     };
 
-    update();
+		measureHeights();
+		update();
 
     const go = (delta) => {
       index = (index + delta + slides.length) % slides.length;
@@ -198,5 +220,9 @@ const { skills } = Astro.props;
 
     prevBtn?.addEventListener('click', () => go(-1));
     nextBtn?.addEventListener('click', () => go(1));
+
+		window.addEventListener('resize', () => {
+			measureHeights();
+		});
   });
 </script>
