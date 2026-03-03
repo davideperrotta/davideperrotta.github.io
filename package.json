@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run generate:resume && astro build",
+    "generate:resume": "node scripts/generate-resume-pdf.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,6 +18,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "@keystatic/astro": "^5.0.6",
-    "marked": "^15.0.0"
+    "marked": "^15.0.0",
+    "pdfkit": "^0.15.0",
+    "yaml": "^2.7.0"
   }
 }

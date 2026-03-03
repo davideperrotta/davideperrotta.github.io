@@ -18,7 +18,7 @@ sportsValue: Running, mountain bike, kayak
 links:
   - label: Linkedin
     url: https://linkedin.com/in/davideperrotta
-  - label: Resume
-    url: https://davideperrotta.github.io/resume_app/
+  - label: Download resume (PDF)
+    url: /resume.pdf
   - label: Blog
     url: /blog

@@ -46,8 +46,8 @@ const { hero } = Astro.props;
 			{hero.links?.map((link: { label: string; url: string }) => (
 				<a
 					href={link.url}
-					target={link.url.startsWith('/') ? undefined : '_blank'}
-					rel={link.url.startsWith('/') ? undefined : 'noopener noreferrer'}
+					target={link.url.startsWith('/') && !link.url.endsWith('.pdf') ? undefined : '_blank'}
+					rel={link.url.startsWith('/') && !link.url.endsWith('.pdf') ? undefined : 'noopener noreferrer'}
 				>
 					{link.label}
 				</a>

@@ -1,10 +1,16 @@
 title: Links
 links:
-  - label: CV / Resume
-    url: https://davideperrotta.github.io/resume_app
   - label: LinkedIn
     url: https://linkedin.com/in/davideperrotta
-  - label: YouTube
-    url: https://www.youtube.com/c/DavidePerrotta
   - label: Blog
     url: /blog
+  - label: CV / Resume (Flutter)
+    url: https://davideperrotta.github.io/resume_app
+  - label: Star Wars App (React Router)
+    url: https://davideperrotta.github.io/star-wars-app
+  - label: Old website (Vite + Vue)
+    url: https://davideperrotta.github.io/davideperrotta-vite-vue
+  - label: Screen Sharing App - video (WebRTC + JS)
+    url: https://www.youtube.com/watch?v=5olZrcFNk5A
+  - label: Full Stack App - video (NodeJS + MongoDB)
+    url: https://www.youtube.com/watch?v=8py3KTMVoHE
