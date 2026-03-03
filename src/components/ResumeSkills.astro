@@ -2,38 +2,80 @@
 const { skills } = Astro.props;
 ---
 
-<section class="card" aria-labelledby="skills-title">
-	<h2 id="skills-title">{skills.title}</h2>
-	<div class="skills-grid">
-		{skills.categories?.map((category: { name: string; items: string[] }) => (
-			<div class="skills-category">
-				<h3>{category.name}</h3>
-				<ul class="skills-list">
-					{category.items?.map((item: string) => (
-						<li>{item}</li>
-					))}
-				</ul>
+<section class="card" aria-labelledby="skills-title" data-skills-slider>
+	<header class="skills-header">
+		<h2 id="skills-title">{skills.title}</h2>
+		{skills.categories && skills.categories.length > 1 && (
+			<div class="skills-slider__controls skills-slider__controls--top">
+				<button
+					type="button"
+					class="skills-nav skills-nav--prev"
+					data-skills-prev
+					aria-label="Previous skills group"
+				>
+					<span aria-hidden="true">&#x2039;</span>
+				</button>
+				<span class="skills-slider__counter">
+					<span data-skills-index>1</span>
+					<span class="skills-slider__counter-sep">/</span>
+					<span data-skills-total>{skills.categories.length}</span>
+				</span>
+				<button
+					type="button"
+					class="skills-nav skills-nav--next"
+					data-skills-next
+					aria-label="Next skills group"
+				>
+					<span aria-hidden="true">&#x203A;</span>
+				</button>
 			</div>
-		))}
-	</div>
+		)}
+	</header>
+	{skills.categories && skills.categories.length > 0 && (
+		<div class="skills-slider">
+			<div class="skills-slider__viewport">
+				{skills.categories.map((category: { name: string; items: string[] }, index: number) => (
+					<div class={`skills-slide${index === 0 ? ' skills-slide--active' : ''}`}>
+						<h3 class="skills-category-title">{category.name}</h3>
+						<ul class="skills-list">
+							{category.items?.map((item: string) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	)}
 </section>
 
 <style>
-	.skills-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		gap: 1rem 1.2rem;
+	.skills-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		margin-bottom: 0.9rem;
 	}
 
-	.skills-category {
+	.skills-slider__viewport {
+		position: relative;
+	}
+
+	.skills-slide {
+		display: none;
 		background: rgba(15, 23, 42, 0.6);
 		border-radius: 0.9rem;
 		border: 1px solid rgba(148, 163, 184, 0.45);
-		padding: 0.75rem 0.9rem;
+		padding: 0.8rem 0.9rem;
 	}
 
-	.skills-category h3 {
-		margin: 0 0 0.35rem;
+	.skills-slide--active {
+		display: block;
+	}
+
+	.skills-category-title {
+		margin: 0 0 0.4rem;
 		font-size: 0.9rem;
 		letter-spacing: 0.02em;
 		text-transform: uppercase;
@@ -60,4 +102,101 @@ const { skills } = Astro.props;
 		white-space: normal;
 		word-break: break-word;
 	}
+
+	.skills-slider__controls {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.5rem;
+	}
+
+	.skills-slider__controls--top {
+		margin-top: 0;
+	}
+
+	.skills-slider__counter {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+		min-width: 2.4rem;
+		text-align: center;
+	}
+
+	.skills-slider__counter-sep {
+		margin: 0 0.1rem;
+	}
+
+	.skills-nav {
+		width: 1.8rem;
+		height: 1.8rem;
+		border-radius: 999px;
+		border: 1px solid rgba(148, 163, 184, 0.6);
+		background: rgba(15, 23, 42, 0.9);
+		color: var(--accent-soft);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		padding: 0;
+		font-size: 1rem;
+		transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease,
+			box-shadow 0.15s ease;
+	}
+
+	.skills-nav:hover {
+		border-color: rgba(129, 140, 248, 0.9);
+		background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.4), transparent 55%),
+			linear-gradient(to bottom right, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+		transform: translateY(-1px);
+		box-shadow: 0 10px 22px rgba(15, 23, 42, 0.7);
+	}
+
+	.skills-nav:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 2px;
+	}
+
+	@media (max-width: 640px) {
+		.skills-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.skills-slide {
+			padding: 0.75rem 0.75rem;
+		}
+	}
 </style>
+
+<script type="module">
+  const sliders = document.querySelectorAll('[data-skills-slider]');
+
+  sliders.forEach((slider) => {
+    const slides = slider.querySelectorAll('.skills-slide');
+    if (!slides.length) return;
+
+    let index = 0;
+    const indexEl = slider.querySelector('[data-skills-index]');
+    const totalEl = slider.querySelector('[data-skills-total]');
+    const prevBtn = slider.querySelector('[data-skills-prev]');
+    const nextBtn = slider.querySelector('[data-skills-next]');
+
+    if (totalEl) totalEl.textContent = String(slides.length);
+
+    const update = () => {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('skills-slide--active', i === index);
+      });
+      if (indexEl) indexEl.textContent = String(index + 1);
+    };
+
+    update();
+
+    const go = (delta) => {
+      index = (index + delta + slides.length) % slides.length;
+      update();
+    };
+
+    prevBtn?.addEventListener('click', () => go(-1));
+    nextBtn?.addEventListener('click', () => go(1));
+  });
+</script>
