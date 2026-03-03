@@ -31,8 +31,8 @@ items:
   - title: Backend, APIs & data
     body: >-
       Backends and APIs that connect everything: SQL and NoSQL databases,
-      caching layers and integrations designed to be reliable and easy to
-      evolve.
+      authentication, caching layers and integrations designed to be reliable
+      and easy to evolve.
     tags:
       - REST & GraphQL APIs
       - SQL & NoSQL databases
