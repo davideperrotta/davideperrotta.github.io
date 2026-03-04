@@ -16,7 +16,7 @@ hobbiesValue: Bass guitar, guitar, reading books
 sportsLabel: Sports
 sportsValue: Running, mountain bike, kayak
 links:
-  - label: Linkedin
+  - label: LinkedIn
     url: https://linkedin.com/in/davideperrotta
   - label: CV / resume (PDF)
     url: /davideperrotta-astro/resume.pdf
