@@ -167,6 +167,19 @@ content: >
   rendering.
 
 
+  There is also a very concrete **cost benefit** to this static
+  approach. Because the final site is just HTML, CSS, images and a
+  small amount of JavaScript, hosting providers need far fewer
+  resources to serve it. Platforms like Vercel, for example, measure
+  memory usage over time using units such as **MIU (Memory In Use per
+  hour)** for server functions. With Astro there is almost no need for
+  long‑running server processes or heavy dynamic rendering, so the
+  total RAM consumed by the project is much lower – and this can
+  significantly reduce the infrastructure bill compared to
+  JavaScript‑heavy frameworks that keep serverless functions or Node.js
+  servers active on every request.
+
+
   ---
 
 
