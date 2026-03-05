@@ -4,7 +4,12 @@ import { keystaticReader } from '../../keystatic';
 import { marked } from 'marked';
 
 const posts = await keystaticReader.collections.blog.all();
-const orderedPosts = posts.toSorted((a, b) => a.slug.localeCompare(b.slug));
+const orderedPosts = posts.toSorted((a, b) => {
+	const dateA = a.entry.date ? new Date(a.entry.date as string).getTime() : 0;
+	const dateB = b.entry.date ? new Date(b.entry.date as string).getTime() : 0;
+	if (dateA !== dateB) return dateB - dateA;
+	return a.slug.localeCompare(b.slug);
+});
 
 const blogPosts = orderedPosts.filter(
 	(post) => post.entry.category === 'blog' || post.entry.category === undefined,

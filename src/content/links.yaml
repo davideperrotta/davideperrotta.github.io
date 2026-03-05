@@ -1,16 +1,14 @@
-title: Links
+title: Other projects
 links:
-  - label: LinkedIn
-    url: https://linkedin.com/in/davideperrotta
-  - label: Blog
-    url: /blog
-  - label: CV / Resume (Flutter)
+  - label: 📄 CV / Resume (Flutter)
     url: https://davideperrotta.github.io/resume_app
-  - label: Star Wars App (React Router)
+  - label: 👾 Star Wars App (React Router)
     url: https://davideperrotta.github.io/star-wars-app
-  - label: Old website (Vite + Vue)
+  - label: 🌐 Old website (Vite + Vue)
     url: https://davideperrotta.github.io/davideperrotta-vite-vue
-  - label: Screen Sharing App - video (WebRTC + JS)
+  - label: 📺 Video - Screen Sharing App (WebRTC + JS)
     url: https://www.youtube.com/watch?v=5olZrcFNk5A
-  - label: Full Stack App - video (NodeJS + MongoDB)
+  - label: 📺 Video - Full Stack App (NodeJS + MongoDB)
     url: https://www.youtube.com/watch?v=8py3KTMVoHE
+  - label: 💻 Look all the projects on GitHub
+    url: https://github.com/davideperrotta

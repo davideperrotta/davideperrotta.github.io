@@ -1,0 +1,251 @@
+title: How this Astro portfolio achieves outstanding SEO and performance
+date: 2026-03-05
+slug: astro-seo-performance
+category: blog
+image: /blog-images/astro-seo-performance/image.png
+content: >
+  ## How this Astro portfolio achieves outstanding SEO and performance
+
+
+  This portfolio is a practical example of how **Astro** can reach extremely
+  high levels of **SEO, performance and mobile usability** when it is combined
+  with a content strategy based on a blog and well‑designed internal links.
+
+
+  I built and refined this site after many years of experience with frameworks
+  like **Next.js**. Astro gave me a different way of thinking about content,
+  rendering and JavaScript – a way that is naturally aligned with SEO and page
+  speed.
+
+
+  ---
+
+
+  ### Astro as a SEO‑first framework
+
+
+  Most JavaScript frameworks were originally designed for web applications, not
+  for content‑heavy sites. Astro is different: it is built **from day one** with
+  content and SEO in mind.
+
+
+  On this portfolio, Astro helps SEO in several ways:
+
+
+  - **Static HTML by default**: each page is rendered at build time,
+    so search engines receive a full HTML document, not a blank shell
+    that needs JavaScript to load.
+
+  - **Clean URLs and predictable routing**: routes like `/blog` and
+    `/blog/astro-seo-performance` are simple, descriptive and
+    easy to index.
+
+  - **Fine‑grained control over metadata**: in the layout I can define
+    `title`, `description`, canonical URLs and Open Graph tags for each
+    page, without fighting with client‑side routing.
+
+  - **Excellent Core Web Vitals**: because Astro ships almost no
+    JavaScript by default, pages remain lightweight, fast to load and
+    responsive even on mobile connections.
+
+
+  The result is a site that scores **very high in Lighthouse** and offers a
+  strong foundation for organic search visibility.
+
+
+  ---
+
+
+  ### Island architecture: only the JavaScript you really need
+
+
+  One of the most powerful ideas in Astro is the **island architecture**.
+  Instead of turning every page into a single‑page application, Astro renders
+  static HTML and allows you to add **interactive islands** where needed.
+
+
+  On this portfolio I use **React components as islands** for small interactive
+  pieces (for example, counters or UI widgets), while the rest of the page stays
+  static and SEO‑friendly.
+
+
+  This has several advantages:
+
+
+  - **No accidental full‑SPA**: in many Next.js projects it is easy to
+    end up with a page that is effectively a full SPA, with too much
+    client‑side logic. In Astro, JavaScript is opt‑in and scoped.
+
+  - **Lower bundle size**: only the islands that need interactivity are
+    hydrated on the client, reducing the amount of JavaScript that the
+    browser must download and execute.
+
+  - **Clear separation of concerns**: content and layout live in Astro
+    templates, while interactive behavior is isolated in components.
+
+
+  This makes it **much harder to accidentally hurt performance** while still
+  giving all the flexibility of React, Vue or other frameworks for the parts of
+  the site that really need it.
+
+
+  ---
+
+
+  ### The difference with Next.js after years of use
+
+
+  I have used **Next.js for many years**, and it is still a great framework for
+  complex applications. However, for a content‑driven portfolio like this one,
+  some limitations become clear:
+
+
+  - In Next.js, it is often difficult to keep a clean separation
+    between **SSR (Server‑Side Rendering)** and **CSR (Client‑Side
+    Rendering)**. Components tend to mix logic and rendering, and it is
+    easy to add client‑side code everywhere.
+
+  - You need to **decide upfront** how each page will be rendered
+    (`getStaticProps`, `getServerSideProps`, client components, server
+    components) and maintain that mental model over time.
+
+  - The final HTML frequently depends on JavaScript execution, which
+    can delay when the real content becomes visible and indexable.
+
+
+  With Astro the mental model is simpler:
+
+
+  - Pages are static by default and become interactive only where you
+    **explicitly** add an island.
+
+  - Most of the site is rendered as **pure HTML after the build**, so
+    search engines and users see meaningful content immediately.
+
+  - It is actually hard to go out of boundaries and accidentally
+    convert the entire page into heavy client‑side JavaScript, which
+    is something that happens easily in large Next.js codebases.
+
+
+  In practice, this portfolio gets the **best of both worlds**: I could still
+  use React where it shines, creating islands only for the components that
+  really need interactivity, while keeping the site as fast and SEO‑friendly as
+  a classic static site.
+
+
+  ---
+
+
+  ### Static site generation vs JavaScript‑heavy frameworks
+
+
+  A key design choice of Astro is that, after the build, you end up with a
+  **static site**: HTML, CSS and only the minimal JavaScript required for the
+  islands.
+
+
+  Many JavaScript frameworks, on the other hand, ship pages where the main
+  content is managed by a large JavaScript bundle. Even if you render on the
+  server, a lot of logic still runs on the client.
+
+
+  For SEO and performance, this portfolio benefits from Astro because:
+
+
+  - **HTML is the source of truth**: crawlers and users do not depend on
+    JavaScript to see the core content.
+
+  - **Caching is simpler**: static assets can be cached aggressively by
+    CDNs and browsers.
+
+  - **Less runtime complexity**: there is no Node.js server rendering
+    pages on each request – just prebuilt files served quickly.
+
+
+  This approach aligns perfectly with the needs of a portfolio and a blog, where
+  content is updated through commits and rebuilds rather than per‑request
+  rendering.
+
+
+  ---
+
+
+  ### How the blog and internal links help SEO
+
+
+  Beyond the framework, a key part of this site's SEO strategy is the **blog
+  itself** and how internal links are structured.
+
+
+  - Each article lives under `/blog/slug`, with a clear topic‑focused
+    URL.
+
+  - Posts link to services, roles and locations that are relevant for
+    my work as a **web developer, software developer and software
+    architect in Italy**.
+
+  - The layout centralizes metadata, structured data and canonical URLs
+    so that the whole site has a consistent SEO foundation.
+
+
+  These internal connections help search engines understand the **thematic
+  relationships** between pages and support better SERP positions over time.
+
+
+  ---
+
+
+  ### Keystatic CMS: fast content, ready for indexing
+
+
+  To manage the content of this portfolio I use **Keystatic CMS**. Instead of
+  relying on a remote database, Keystatic stores content in structured YAML
+  files inside the repository.
+
+
+  This has several concrete benefits:
+
+
+  - **Easy authoring**: Keystatic provides a clean UI for creating and
+    editing posts, resume sections, services and skills without touching
+    the code.
+
+  - **Structured models**: fields like `title`, `slug`, `category`,
+    `image` and `content` are validated and strongly typed, so builds
+    are reliable.
+
+  - **Content in Git**: every change is versioned, reviewed and
+    deployed through the same pipeline as the code.
+
+  - **Smooth indexing**: once a post is committed, the next Astro build
+    generates a static HTML page that search engines can crawl and
+    index.
+
+
+  The combination of Astro + Keystatic makes it **very easy to produce new
+  content** without losing control over performance and SEO.
+
+
+  ---
+
+
+  ### Why I recommend Astro for SEO‑focused sites
+
+
+  After years of building applications with Next.js, moving this portfolio to
+  Astro was a clear improvement for:
+
+
+  - **Performance and Core Web Vitals** - **Mobile usability and perceived
+  speed** - **SEO and SERP positioning over time** - **Developer experience when
+  adding new content with Keystatic**
+
+
+  If your main goal is to build a **fast, content‑driven website** – like a
+  portfolio, blog or marketing site – Astro is a framework that lets you keep
+  using your favorite JavaScript tools (including React) **without sacrificing
+  SEO or performance**.
+
+
+  This portfolio is living proof of that approach: a modern stack, static
+  output, strong SEO foundations and a content workflow powered by Keystatic.
