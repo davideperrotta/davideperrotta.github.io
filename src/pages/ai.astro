@@ -108,7 +108,9 @@ const description =
 
 	.ai-chat__message {
 		margin-bottom: 0.8rem;
-		max-width: 90%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.ai-chat__message-role {
@@ -125,10 +127,12 @@ const description =
 		padding: 0.55rem 0.7rem;
 		border-radius: 0.7rem;
 		line-height: 1.5;
+		max-width: 90%;
+		display: inline-block;
 	}
 
 	.ai-chat__message--user {
-		margin-left: auto;
+		align-items: flex-end;
 		text-align: right;
 	}
 
