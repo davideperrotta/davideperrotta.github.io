@@ -7,7 +7,7 @@ interface Message {
 }
 
 const WORKER_URL =
-	'https://llm-chat-app-template.davideperrotta1991.workers.dev/';
+	'https://llm-chat-app-template.davideperrotta1991.workers.dev/api/chat';
 
 export function AiChat() {
 	const [input, setInput] = useState('');
