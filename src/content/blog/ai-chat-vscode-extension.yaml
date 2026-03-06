@@ -31,9 +31,10 @@ content: |
   1. **Generate new code** from a simple description.
   2. **Improve existing code** by suggesting cleaner, more efficient patterns.
   3. **Explain what code does** in plain language when I’m stuck.
+  4. **Create new files** with code based on the entered request.
 
   I just select a snippet, press a keyboard shortcut, and get instant,
-  context-aware suggestions. In an era when AI agents are part of every
+  context-aware suggestions. Additionally, the plugin can create new files with code based on the request entered. In an era when AI agents are part of every
   developer's toolkit, having a **custom assistant** ensures that sensitive
   project details stay private and aligned with my specific stack. It’s a big
   boost in productivity, especially when debugging or exploring new ideas – I
