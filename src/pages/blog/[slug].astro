@@ -54,7 +54,9 @@ for (const line of lines) {
 }
 
 markdownBody = filteredLines.join('\n');
-const htmlContent = marked.parse(markdownBody);
+let htmlContent = marked.parse(markdownBody);
+// Force light blue color on all links
+htmlContent = htmlContent.replace(/<a\s+/g, '<a style="color: #1e90ff !important;" ');
 
 const title = `${page.title} · Davide Perrotta`;
 const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta';
@@ -170,9 +172,27 @@ const description = page.content?.slice(0, 150) ?? 'Blog post by Davide Perrotta
 	}
 
 	.blog-post__content a {
-		color: var(--accent-soft);
+		color: #ffffff !important;
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
+	}
+
+	.blog-post__content a:visited {
+		color: #ffffff !important;
+	}
+
+	.blog-post__content a:hover {
+		color: #f0f0f0 !important;
+	}
+
+	.blog-post__content a:focus {
+		color: #ffffff !important;
+		outline: 2px solid #ffffff !important;
+		outline-offset: 2px;
+	}
+
+	.blog-post__content a:active {
+		color: #e0e0e0 !important;
 	}
 
 	.blog-post__content strong {
