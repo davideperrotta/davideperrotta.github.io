@@ -45,7 +45,13 @@ const { hero } = Astro.props;
 		<div class="resume__links">
 			{hero.links?.map((link: { label: string; url: string }) => (
 				<a
-					class={link.url.startsWith('/blog') ? 'resume__link resume__link--blog' : 'resume__link'}
+					class={
+						link.url.startsWith('/blog')
+							? 'resume__link resume__link--blog'
+						: link.url.startsWith('/ai')
+							? 'resume__link resume__link--ai'
+							: 'resume__link'
+					}
 					href={link.url}
 					target={link.url.startsWith('/') && !link.url.endsWith('.pdf') ? undefined : '_blank'}
 					rel={link.url.startsWith('/') && !link.url.endsWith('.pdf') ? undefined : 'noopener noreferrer'}
@@ -157,6 +163,19 @@ const { hero } = Astro.props;
 
 	.resume__link--blog:hover {
 		background: linear-gradient(135deg, #1fb1b3, #21e58a);
+		color: #0f172a;
+	}
+
+	.resume__link--ai {
+		border-color: transparent;
+		background: linear-gradient(135deg, #facc15, #fb923c) !important;
+		color: #0f172a;
+		font-weight: 600;
+		box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
+	}
+
+	.resume__link--ai:hover {
+		background: linear-gradient(135deg, #eab308, #f97316) !important;
 		color: #0f172a;
 	}
 

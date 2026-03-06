@@ -9,6 +9,7 @@ const description =
 
 <Layout {title} {description}>
 	<main class="ai-page">
+		<a href="/" class="ai-page__back button">← Back to site</a>
 		<section class="ai-card">
 			<h1 class="ai-title">AI Chat</h1>
 			<p class="ai-subtitle">
@@ -24,9 +25,33 @@ const description =
 		max-width: 1160px;
 		margin: 0 auto;
 		min-height: 70vh;
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
+	}
+
+	.ai-page__back.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-bottom: 1rem;
+		margin-left: auto;
+		padding: 0.45rem 1rem;
+		border-radius: 999px;
+		border: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: #f9fafb;
+		background: var(--accent);
+		box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
+		transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.18s ease;
+		position: sticky;
+		top: 1.25rem;
+		z-index: 10;
+	}
+
+	.ai-page__back.button:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 14px 32px rgba(15, 23, 42, 0.7);
+		background: var(--accent-strong);
 	}
 
 	.ai-card {
