@@ -1,45 +1,75 @@
-title: Building AI Agents for My Portfolio and Development Workflow
+title: Building AI Agents for My Portfolio and Visual Studio Code
 date: 2026-03-06
 slug: ai-chat-vscode-extension
 category: blog
 image: /blog-images/ai-chat-vscode-extension/image.png
-content: |
+content: >
   ## AI Chat for Visitors
 
+
   I created an **AI-powered chat** on my portfolio so visitors can instantly ask
+
   me questions about my work and experience. The chat understands my background,
+
   skills, and projects, which means it can deliver **personalized answers**
+
   tailored to who I am and what I do.
 
 
+
   In 2026, AI is a core part of programming, and having a dedicated agent on the
+
   site makes the experience feel modern and responsive. Using my own **custom
+
   model** also helps preserve **privacy**, since visitors' queries stay within
+
   my infrastructure instead of being sent to public services. That control is
+
   particularly important when you don't want your data used to train other
+
   companies' models. 
 
+
   Feel free to **test it yourself** at [AI Chat](/ai) and see
+
   how it behaves in real time.
+
 
   ## Coding Assistant in VS Code
 
+
   To speed up my development process, I also built a **VS Code extension** that
+
   acts as an intelligent coding assistant. It knows the technologies I use—
+
   **TypeScript, React, Astro**—and helps me in three ways:
 
+
   1. **Generate new code** from a simple description.
+
   2. **Improve existing code** by suggesting cleaner, more efficient patterns.
+
   3. **Explain what code does** in plain language when I’m stuck.
+
   4. **Create new files** with code based on the entered request.
 
+
   I just select a snippet, press a keyboard shortcut, and get instant,
-  context-aware suggestions. Additionally, the plugin can create new files with code based on the request entered. In an era when AI agents are part of every
+
+  context-aware suggestions. Additionally, the plugin can create new files with
+  code based on the request entered. In an era when AI agents are part of every
+
   developer's toolkit, having a **custom assistant** ensures that sensitive
+
   project details stay private and aligned with my specific stack. It’s a big
+
   boost in productivity, especially when debugging or exploring new ideas – I
+
   spend less time googling and more time building. Plus, keeping the agent local
+
   means I don't have to worry about sending proprietary code to a public API.
 
+
   To understand how the prototype behaves, take a look at the **image above**
+
   in this article.
