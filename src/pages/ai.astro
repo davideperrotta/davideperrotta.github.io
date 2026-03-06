@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import { AiChat } from '../components/AiChat';
 
-const title = 'AI · Chat con Cloudflare Workers AI';
+const title = 'AI · Chat with AI agent';
 const description =
-	"Pagina AI del sito di Davide Perrotta, con una chat alimentata da Cloudflare Workers AI per fare domande e ricevere risposte.";
+	"AI page of Davide Perrotta's website, featuring a chat powered by an AI agent to ask questions and get answers.";
 ---
 
 <Layout {title} {description}>
@@ -12,14 +12,14 @@ const description =
 		<section class="ai-card">
 			<h1 class="ai-title">AI Chat</h1>
 			<p class="ai-subtitle">
-				Fai una domanda e ricevi la risposta dal tuo worker Cloudflare AI.
+				Ask a question and get an answer from the AI agent.
 			</p>
 			<AiChat client:load />
 		</section>
 	</main>
 </Layout>
 
-<style>
+<style is:global>
 	.ai-page {
 		max-width: 1160px;
 		margin: 0 auto;
@@ -138,16 +138,27 @@ const description =
 		flex: 1;
 		border-radius: 999px;
 		border: 1px solid rgba(75, 85, 99, 0.9);
-		background: rgba(15, 23, 42, 0.9);
+		background: radial-gradient(circle at top left, rgba(51, 65, 85, 0.4) 0, rgba(15, 23, 42, 0.9) 55%),
+			linear-gradient(to bottom right, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 1));
 		color: #e5e7eb;
-		padding: 0.6rem 0.9rem;
-		font-size: 0.95rem;
+		padding: 0.75rem 1.1rem;
+		font-size: 1rem;
 		outline: none;
+		box-shadow: 0 10px 24px rgba(15, 23, 42, 0.65);
+		transition: border-color 0.12s ease, box-shadow 0.12s ease,
+			background 0.12s ease, transform 0.08s ease;
+	}
+
+	.ai-chat__input::placeholder {
+		color: rgba(156, 163, 175, 0.9);
+		font-size: 0.95rem;
 	}
 
 	.ai-chat__input:focus {
 		border-color: var(--accent-soft);
-		box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.6);
+		box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.6),
+			0 14px 32px rgba(15, 23, 42, 0.9);
+		transform: translateY(-1px);
 	}
 
 	.ai-chat__button {

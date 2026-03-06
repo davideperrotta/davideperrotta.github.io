@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from 'react';
+import React, { useEffect, useRef, useState, type FormEvent } from 'react';
 
 interface Message {
 	id: number;
@@ -14,6 +14,8 @@ export function AiChat() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const messagesContainerRef = useRef<HTMLDivElement | null>(null);
+	const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault();
@@ -45,14 +47,14 @@ export function AiChat() {
 			});
 
 			if (!response.ok) {
-				throw new Error(`Errore Server: ${response.status}`);
+				throw new Error(`Server error: ${response.status}`);
 			}
 
 			const data = await response.json();
 			const answerText: string =
 				data && typeof data.response === 'string'
 					? data.response
-					: 'Scusa, Davide è offline al momento. Riprova più tardi!';
+					: 'Sorry, Davide is offline right now. Please try again later!';
 
 			setMessages(prev => [
 				...prev,
@@ -63,22 +65,37 @@ export function AiChat() {
 				},
 			]);
 		} catch (error) {
-			console.error('Errore durante la chiamata all\'AI:', error);
+			console.error('Error while calling the AI:', error);
 			setError(
-				'Scusa, Davide è offline al momento. Riprova più tardi!',
+				'Sorry, Davide is offline right now. Please try again later!',
 			);
 		} finally {
 			setLoading(false);
 		}
 	}
 
+	useEffect(() => {
+		if (!messagesEndRef.current) return;
+		if (messages.length === 0 && !loading && !error) return;
+
+		const frameId = window.requestAnimationFrame(() => {
+			messagesEndRef.current?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'end',
+			});
+		});
+
+		return () => {
+			window.cancelAnimationFrame(frameId);
+		};
+	}, [messages, loading, error]);
+
 	return (
 		<div className="ai-chat">
-			<div className="ai-chat__messages">
+			<div className="ai-chat__messages" ref={messagesContainerRef}>
 				{messages.length === 0 && (
 					<p className="ai-chat__placeholder">
-						Inizia la conversazione chiedendo qualsiasi cosa su sviluppo web,
-						software o il tuo progetto.
+						Start the conversation by asking about Davide Perrotta.
 					</p>
 				)}
 
@@ -88,7 +105,7 @@ export function AiChat() {
 						className={`ai-chat__message ai-chat__message--${message.role}`}
 					>
 						<span className="ai-chat__message-role">
-							{message.role === 'user' ? 'Tu' : 'Davide AI'}
+							{message.role === 'user' ? 'You' : 'Davide AI'}
 						</span>
 						<p className="ai-chat__message-text">{message.content}</p>
 					</div>
@@ -97,28 +114,30 @@ export function AiChat() {
 				{loading && (
 					<div className="ai-chat__message ai-chat__message--assistant ai-chat__message--pending">
 						<span className="ai-chat__message-role">Davide AI</span>
-						<p className="ai-chat__message-text">Sto scrivendo una risposta…</p>
+						<p className="ai-chat__message-text">Writing a reply…</p>
 					</div>
 				)}
 
 				{error && <p className="ai-chat__error">{error}</p>}
+
+				<div ref={messagesEndRef} aria-hidden="true" />
 			</div>
 
 			<form className="ai-chat__form" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					value={input}
-					placeholder="Scrivi la tua domanda…"
+					placeholder="Type your question…"
 					onChange={event => setInput(event.target.value)}
 					className="ai-chat__input"
-					aria-label="Domanda per Davide AI"
+					aria-label="Question for Davide AI"
 				/>
 				<button
 					type="submit"
 					disabled={loading || !input.trim()}
 					className="ai-chat__button"
 				>
-					Invia
+					Send
 				</button>
 			</form>
 		</div>
