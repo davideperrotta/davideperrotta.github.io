@@ -27,7 +27,6 @@ items:
     tags:
       - Flutter
       - React Native
-      - iOS & Android
   - title: Backend, APIs & data
     body: >-
       Backends and APIs that connect everything: SQL and NoSQL databases,
