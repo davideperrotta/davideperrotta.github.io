@@ -272,26 +272,8 @@ const VideoCallClient = () => {
 			console.log('Attempting to join room:', joinRoomId);
 			console.log('Target peer ID:', roomPeerId);
 			
-			// Make sure we have a peer connection
-			if (!peerRef.current) {
-				console.log('No peer connection, creating new one...');
-				peerRef.current = new Peer();
-				
-				peerRef.current.on('open', (id) => {
-					console.log('Joiner peer connected with ID:', id);
-					// Now try to join the room
-					attemptRoomJoin();
-				});
-				
-				peerRef.current.on('error', (err) => {
-					console.error('Joiner peer error:', err);
-					setError('Connection error: ' + err.message);
-				});
-			} else {
-				attemptRoomJoin();
-			}
-			
-			const attemptRoomJoin = () => {
+			// Define the room join function
+			const performRoomJoin = () => {
 				try {
 					console.log('Calling room peer:', roomPeerId);
 					const call = peerRef.current.call(roomPeerId, localStreamRef.current, { metadata: { roomId: joinRoomId } });
@@ -348,9 +330,28 @@ const VideoCallClient = () => {
 				}
 			};
 			
+			// Make sure we have a peer connection
+			if (!peerRef.current) {
+				console.log('No peer connection, creating new one...');
+				peerRef.current = new Peer();
+				
+				peerRef.current.on('open', (id) => {
+					console.log('Joiner peer connected with ID:', id);
+					// Now try to join the room
+					performRoomJoin();
+				});
+				
+				peerRef.current.on('error', (err) => {
+					console.error('Joiner peer error:', err);
+					setError('Connection error: ' + err.message);
+				});
+			} else {
+				performRoomJoin();
+			}
+			
 			// Call immediately if peer is already open
 			if (peerRef.current && peerRef.current.open) {
-				attemptRoomJoin();
+				performRoomJoin();
 			}
 		} catch (err) {
 			console.error('Error in joinRoom:', err);
