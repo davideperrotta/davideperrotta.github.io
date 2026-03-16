@@ -69,6 +69,32 @@ const certifications = await keystaticReader.singletons.certifications.read();
 		margin: 1.5rem 0;
 	}
 
+	.demo-nav {
+		text-align: center;
+		margin: 2rem 0;
+	}
+
+	.demo-nav__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+		color: white;
+		text-decoration: none;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+	}
+
+	.demo-nav__link:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+		background: linear-gradient(135deg, #2563eb, #7c3aed);
+	}
+
 	.card h2 {
 		margin-top: 0;
 		margin-bottom: 0.9rem;

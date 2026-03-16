@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VideoCallClient from '../components/VideoCallClient.jsx';
+---
+
+<Layout>
+	<main class="videocall">
+		<div class="videocall__container">
+			<header class="videocall__header">
+				<h1>Video Call</h1>
+				<p>Connect with others using WebRTC audio and video calling</p>
+			</header>
+			
+			<VideoCallClient client:load />
+		</div>
+	</main>
+
+<style>
+	.videocall {
+		min-height: 100vh;
+		padding: 2rem;
+		background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+	}
+
+	.videocall__container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.videocall__header {
+		text-align: center;
+		margin-bottom: 2rem;
+		color: white;
+	}
+
+	.videocall__header h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+		background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.videocall__header p {
+		font-size: 1.1rem;
+		color: #94a3b8;
+	}
+
+	@media (max-width: 768px) {
+		.videocall {
+			padding: 1rem;
+		}
+
+		.videocall__header h1 {
+			font-size: 2rem;
+		}
+
+		.videocall__header p {
+			font-size: 1rem;
+		}
+	}
+</style>
