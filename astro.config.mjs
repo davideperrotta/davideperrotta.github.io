@@ -14,4 +14,7 @@ export default defineConfig({
 		: undefined,
 	base: '/',
 	integrations: isProd ? [react()] : [react(), keystatic()],
+	server: {
+		host: true
+	}
 });
