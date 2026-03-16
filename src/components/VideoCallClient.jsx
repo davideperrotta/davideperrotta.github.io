@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import pkg from 'peerjs';
+const { Peer } = pkg;
 
 const VideoCallClient = () => {
 	const [localStream, setLocalStream] = useState(null);
@@ -6,23 +8,17 @@ const VideoCallClient = () => {
 	const [isConnected, setIsConnected] = useState(false);
 	const [isAudioEnabled, setIsAudioEnabled] = useState(true);
 	const [isVideoEnabled, setIsVideoEnabled] = useState(true);
-	const [roomId, setRoomId] = useState('');
-	const [joinRoomId, setJoinRoomId] = useState('');
+	const [peerId, setPeerId] = useState('');
+	const [remotePeerId, setRemotePeerId] = useState('');
 	const [error, setError] = useState('');
 	const [connectionState, setConnectionState] = useState('disconnected');
 
 	const localVideoRef = useRef(null);
 	const remoteVideoRef = useRef(null);
-	const peerConnectionRef = useRef(null);
+	const peerRef = useRef(null);
 	const localStreamRef = useRef(null);
 	const remoteStreamRef = useRef(null);
-
-	const configuration = {
-		iceServers: [
-			{ urls: 'stun:stun.l.google.com:19302' },
-			{ urls: 'stun:stun1.l.google.com:19302' }
-		]
-	};
+	const currentCallRef = useRef(null);
 
 	const startLocalStream = async () => {
 		try {
@@ -38,6 +34,53 @@ const VideoCallClient = () => {
 				localVideoRef.current.srcObject = stream;
 			}
 			
+			// Initialize PeerJS after getting media
+			if (!peerRef.current) {
+				const peer = new Peer();
+				
+				peer.on('open', (id) => {
+					console.log('My peer ID is: ' + id);
+					setPeerId(id);
+				});
+
+				peer.on('call', (call) => {
+					console.log('Receiving call from:', call.peer);
+					call.answer(localStreamRef.current);
+					
+					call.on('stream', (remoteStream) => {
+						console.log('Received remote stream');
+						remoteStreamRef.current = remoteStream;
+						setRemoteStream(remoteStream);
+						
+						if (remoteVideoRef.current) {
+							remoteVideoRef.current.srcObject = remoteStream;
+						}
+						setIsConnected(true);
+						setConnectionState('connected');
+					});
+
+					call.on('close', () => {
+						console.log('Call ended');
+						setIsConnected(false);
+						setConnectionState('disconnected');
+						if (remoteVideoRef.current) {
+							remoteVideoRef.current.srcObject = null;
+						}
+						setRemoteStream(null);
+						remoteStreamRef.current = null;
+					});
+
+					currentCallRef.current = call;
+				});
+
+				peer.on('error', (err) => {
+					console.error('PeerJS error:', err);
+					setError('Connection error: ' + err.message);
+				});
+
+				peerRef.current = peer;
+			}
+			
 			setError('');
 		} catch (err) {
 			console.error('Error accessing media devices:', err);
@@ -45,101 +88,59 @@ const VideoCallClient = () => {
 		}
 	};
 
-	const createPeerConnection = () => {
+	const callPeer = () => {
+		if (!remotePeerId) {
+			setError('Please enter a remote peer ID.');
+			return;
+		}
+
+		if (!peerRef.current || !localStreamRef.current) {
+			setError('Please start your camera first.');
+			return;
+		}
+
 		try {
-			const pc = new RTCPeerConnection(configuration);
+			const call = peerRef.current.call(remotePeerId, localStreamRef.current);
 			
-			pc.onicecandidate = (event) => {
-				if (event.candidate) {
-					// In a real implementation, send this candidate to the other peer
-					console.log('ICE candidate:', event.candidate);
-				}
-			};
+			if (!call) {
+				setError('Could not initiate call. Peer may not be available.');
+				return;
+			}
 
-			pc.onconnectionstatechange = () => {
-				setConnectionState(pc.connectionState);
-				if (pc.connectionState === 'connected') {
-					setIsConnected(true);
-				} else if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed') {
-					setIsConnected(false);
-				}
-			};
-
-			pc.ontrack = (event) => {
-				const [remoteStream] = event.streams;
+			call.on('stream', (remoteStream) => {
+				console.log('Received remote stream');
 				remoteStreamRef.current = remoteStream;
 				setRemoteStream(remoteStream);
 				
 				if (remoteVideoRef.current) {
 					remoteVideoRef.current.srcObject = remoteStream;
 				}
-			};
+				setIsConnected(true);
+				setConnectionState('connected');
+			});
 
-			// Add local stream to peer connection
-			if (localStreamRef.current) {
-				localStreamRef.current.getTracks().forEach(track => {
-					pc.addTrack(track, localStreamRef.current);
-				});
-			}
+			call.on('close', () => {
+				console.log('Call ended');
+				setIsConnected(false);
+				setConnectionState('disconnected');
+				if (remoteVideoRef.current) {
+					remoteVideoRef.current.srcObject = null;
+				}
+				setRemoteStream(null);
+				remoteStreamRef.current = null;
+			});
 
-			peerConnectionRef.current = pc;
-			return pc;
+			call.on('error', (err) => {
+				console.error('Call error:', err);
+				setError('Call error: ' + err.message);
+			});
+
+			currentCallRef.current = call;
+			setConnectionState('connecting');
+			setError('');
 		} catch (err) {
-			console.error('Error creating peer connection:', err);
-			setError('Failed to create peer connection.');
-			return null;
-		}
-	};
-
-	const createRoom = async () => {
-		if (!localStreamRef.current) {
-			setError('Please start your camera first.');
-			return;
-		}
-
-		const newRoomId = Math.random().toString(36).substring(2, 8);
-		setRoomId(newRoomId);
-		
-		// In a real implementation, this would connect to a signaling server
-		// For demo purposes, we'll simulate a connection
-		const pc = createPeerConnection();
-		if (pc) {
-			try {
-				const offer = await pc.createOffer();
-				await pc.setLocalDescription(offer);
-				console.log('Room created with ID:', newRoomId);
-				console.log('Offer:', offer);
-			} catch (err) {
-				console.error('Error creating offer:', err);
-				setError('Failed to create room.');
-			}
-		}
-	};
-
-	const joinRoom = async () => {
-		if (!localStreamRef.current) {
-			setError('Please start your camera first.');
-			return;
-		}
-
-		if (!joinRoomId) {
-			setError('Please enter a room ID.');
-			return;
-		}
-
-		// In a real implementation, this would connect to a signaling server
-		// For demo purposes, we'll simulate a connection
-		const pc = createPeerConnection();
-		if (pc) {
-			try {
-				const offer = await pc.createOffer();
-				await pc.setLocalDescription(offer);
-				console.log('Joined room:', joinRoomId);
-				console.log('Offer:', offer);
-			} catch (err) {
-				console.error('Error joining room:', err);
-				setError('Failed to join room.');
-			}
+			console.error('Error calling peer:', err);
+			setError('Failed to call peer. Please check the peer ID.');
 		}
 	};
 
@@ -164,9 +165,14 @@ const VideoCallClient = () => {
 	};
 
 	const endCall = () => {
-		if (peerConnectionRef.current) {
-			peerConnectionRef.current.close();
-			peerConnectionRef.current = null;
+		if (currentCallRef.current) {
+			currentCallRef.current.close();
+			currentCallRef.current = null;
+		}
+
+		if (peerRef.current) {
+			peerRef.current.destroy();
+			peerRef.current = null;
 		}
 
 		if (localStreamRef.current) {
@@ -182,8 +188,8 @@ const VideoCallClient = () => {
 		setLocalStream(null);
 		setRemoteStream(null);
 		setIsConnected(false);
-		setRoomId('');
-		setJoinRoomId('');
+		setPeerId('');
+		setRemotePeerId('');
 		setConnectionState('disconnected');
 
 		if (localVideoRef.current) {
@@ -199,6 +205,14 @@ const VideoCallClient = () => {
 			endCall();
 		};
 	}, []);
+
+	const copyPeerId = () => {
+		if (peerId) {
+			navigator.clipboard.writeText(peerId);
+			setError('Peer ID copied to clipboard!');
+			setTimeout(() => setError(''), 2000);
+		}
+	};
 
 	return (
 		<div className="video-call">
@@ -247,27 +261,30 @@ const VideoCallClient = () => {
 						</button>
 					) : (
 						<>
-							<div className="room-controls">
-								<input
-									type="text"
-									value={joinRoomId}
-									onChange={(e) => setJoinRoomId(e.target.value)}
-									placeholder="Enter room ID"
-									className="room-input"
-								/>
-								<button onClick={createRoom} className="btn btn-secondary">
-									🏠 Create Room
-								</button>
-								<button onClick={joinRoom} className="btn btn-secondary">
-									🚪 Join Room
-								</button>
-							</div>
-							
-							{roomId && (
-								<div className="room-info">
-									<span className="room-id">Room ID: {roomId}</span>
+							{peerId && (
+								<div className="peer-info">
+									<div className="your-id">
+										<span>Your ID: </span>
+										<span className="peer-id">{peerId}</span>
+										<button onClick={copyPeerId} className="btn btn-copy">
+											📋 Copy
+										</button>
+									</div>
 								</div>
 							)}
+							
+							<div className="call-controls">
+								<input
+									type="text"
+									value={remotePeerId}
+									onChange={(e) => setRemotePeerId(e.target.value)}
+									placeholder="Enter remote peer ID"
+									className="peer-input"
+								/>
+								<button onClick={callPeer} className="btn btn-secondary" disabled={!remotePeerId}>
+									📞 Call
+								</button>
+							</div>
 						</>
 					)}
 				</div>
@@ -372,15 +389,37 @@ const VideoCallClient = () => {
 					gap: 0.75rem;
 				}
 
-				.room-controls {
+				.peer-info {
+					text-align: center;
+					color: #94a3b8;
+					font-size: 0.875rem;
+				}
+
+				.your-id {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 0.5rem;
+					flex-wrap: wrap;
+				}
+
+				.peer-id {
+					background: rgba(59, 130, 246, 0.2);
+					padding: 0.25rem 0.5rem;
+					border-radius: 0.25rem;
+					font-family: monospace;
+					color: #3b82f6;
+				}
+
+				.call-controls {
 					display: flex;
 					gap: 0.5rem;
 					flex-wrap: wrap;
 				}
 
-				.room-input {
+				.peer-input {
 					flex: 1;
-					min-width: 150px;
+					min-width: 200px;
 					padding: 0.5rem;
 					border: 1px solid rgba(148, 163, 184, 0.3);
 					border-radius: 0.375rem;
@@ -389,23 +428,10 @@ const VideoCallClient = () => {
 					font-size: 0.875rem;
 				}
 
-				.room-input:focus {
+				.peer-input:focus {
 					outline: none;
 					border-color: #3b82f6;
 					box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-				}
-
-				.room-info {
-					text-align: center;
-					color: #94a3b8;
-					font-size: 0.875rem;
-				}
-
-				.room-id {
-					background: rgba(59, 130, 246, 0.2);
-					padding: 0.25rem 0.5rem;
-					border-radius: 0.25rem;
-					font-family: monospace;
 				}
 
 				.media-controls {
@@ -428,12 +454,17 @@ const VideoCallClient = () => {
 					gap: 0.25rem;
 				}
 
+				.btn:disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+
 				.btn-primary {
 					background: #3b82f6;
 					color: white;
 				}
 
-				.btn-primary:hover {
+				.btn-primary:hover:not(:disabled) {
 					background: #2563eb;
 				}
 
@@ -442,8 +473,19 @@ const VideoCallClient = () => {
 					color: white;
 				}
 
-				.btn-secondary:hover {
+				.btn-secondary:hover:not(:disabled) {
 					background: #475569;
+				}
+
+				.btn-copy {
+					background: #059669;
+					color: white;
+					padding: 0.25rem 0.5rem;
+					font-size: 0.75rem;
+				}
+
+				.btn-copy:hover {
+					background: #047857;
 				}
 
 				.btn-active {
@@ -513,7 +555,7 @@ const VideoCallClient = () => {
 						grid-template-columns: 1fr;
 					}
 
-					.room-controls {
+					.call-controls {
 						flex-direction: column;
 					}
 
@@ -523,6 +565,11 @@ const VideoCallClient = () => {
 
 					.btn {
 						justify-content: center;
+					}
+
+					.your-id {
+						flex-direction: column;
+						gap: 0.25rem;
 					}
 				}
 			`}</style>

@@ -10,16 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@keystatic/core": "^0.5.0",
     "@astrojs/react": "^4.4.2",
+    "@keystatic/astro": "^5.0.6",
+    "@keystatic/core": "^0.5.0",
     "@nanostores/react": "^1.0.0",
     "astro": "^5.17.1",
+    "marked": "^15.0.0",
     "nanostores": "^1.1.0",
+    "pdfkit": "^0.15.0",
+    "peerjs": "^1.5.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "@keystatic/astro": "^5.0.6",
-    "marked": "^15.0.0",
-    "pdfkit": "^0.15.0",
     "yaml": "^2.7.0"
   }
 }
