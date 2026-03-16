@@ -158,17 +158,27 @@ const VideoCallClient = () => {
 		const newRoomId = Math.random().toString(36).substring(2, 8);
 		setRoomId(newRoomId);
 		
+		console.log('Creating room:', newRoomId);
+		
 		// Create a peer with room ID as the identifier
 		const roomPeerId = `room-${newRoomId}`;
+		console.log('Room peer ID:', roomPeerId);
+		
+		// Destroy existing peer if any
+		if (peerRef.current) {
+			peerRef.current.destroy();
+		}
+		
 		const peer = new Peer(roomPeerId);
 		
 		peer.on('open', (id) => {
-			console.log('Room created with ID:', newRoomId);
-			console.log('Room peer ID:', id);
+			console.log('Room created successfully with ID:', newRoomId);
+			console.log('PeerJS room peer ID:', id);
+			setError('');
 		});
 
 		peer.on('call', (call) => {
-			console.log('Someone joining room:', newRoomId);
+			console.log('Someone joining room:', newRoomId, 'from peer:', call.peer);
 			if (!localStreamRef.current) {
 				console.error('No local stream to answer call');
 				return;
@@ -176,7 +186,7 @@ const VideoCallClient = () => {
 			call.answer(localStreamRef.current);
 			
 			call.on('stream', (remoteStream) => {
-				console.log('Received remote stream in room');
+				console.log('Received remote stream in room:', newRoomId);
 				remoteStreamRef.current = remoteStream;
 				setRemoteStream(remoteStream);
 				
@@ -188,7 +198,7 @@ const VideoCallClient = () => {
 			});
 
 			call.on('close', () => {
-				console.log('Call ended in room');
+				console.log('Call ended in room:', newRoomId);
 				setIsConnected(false);
 				setConnectionState('disconnected');
 				if (remoteVideoRef.current) {
@@ -203,16 +213,19 @@ const VideoCallClient = () => {
 
 		peer.on('error', (err) => {
 			console.error('Room peer error:', err);
-			setError('Room error: ' + err.message);
+			console.error('Error type:', err.type);
+			console.error('Error message:', err.message);
+			
+			if (err.type === 'unavailable-id') {
+				setError('Room ID "' + newRoomId + '" is already taken. Creating a new room...');
+				// Try again with a new room ID
+				setTimeout(() => createRoom(), 1000);
+			} else {
+				setError('Room creation error: ' + err.message);
+			}
 		});
 
-		// Replace the existing peer
-		if (peerRef.current) {
-			peerRef.current.destroy();
-		}
 		peerRef.current = peer;
-		
-		setError('');
 	};
 
 	const joinRoom = () => {
@@ -227,50 +240,83 @@ const VideoCallClient = () => {
 		}
 
 		const roomPeerId = `room-${joinRoomId}`;
+		console.log('Attempting to join room:', joinRoomId);
+		console.log('Target peer ID:', roomPeerId);
 		
-		try {
-			console.log('Joining room:', joinRoomId);
-			const call = peerRef.current.call(roomPeerId, localStreamRef.current, { metadata: { roomId: joinRoomId } });
+		// Make sure we have a peer connection
+		if (!peerRef.current) {
+			console.log('No peer connection, creating new one...');
+			peerRef.current = new Peer();
 			
-			if (!call) {
-				setError('Could not join room. Room may not exist.');
-				return;
-			}
-
-			call.on('stream', (remoteStream) => {
-				console.log('Connected to room:', joinRoomId);
-				remoteStreamRef.current = remoteStream;
-				setRemoteStream(remoteStream);
+			peerRef.current.on('open', (id) => {
+				console.log('Joiner peer connected with ID:', id);
+				// Now try to join the room
+				attemptRoomJoin();
+			});
+			
+			peerRef.current.on('error', (err) => {
+				console.error('Joiner peer error:', err);
+				setError('Connection error: ' + err.message);
+			});
+		} else {
+			attemptRoomJoin();
+		}
+		
+		function attemptRoomJoin() {
+			try {
+				console.log('Calling room peer:', roomPeerId);
+				const call = peerRef.current.call(roomPeerId, localStreamRef.current, { metadata: { roomId: joinRoomId } });
 				
-				if (remoteVideoRef.current) {
-					remoteVideoRef.current.srcObject = remoteStream;
+				if (!call) {
+					console.error('Failed to initiate call to room:', roomPeerId);
+					setError('Could not join room. Room may not exist or is full.');
+					return;
 				}
-				setIsConnected(true);
-				setConnectionState('connected');
-			});
 
-			call.on('close', () => {
-				console.log('Left room:', joinRoomId);
-				setIsConnected(false);
-				setConnectionState('disconnected');
-				if (remoteVideoRef.current) {
-					remoteVideoRef.current.srcObject = null;
-				}
-				setRemoteStream(null);
-				remoteStreamRef.current = null;
-			});
+				console.log('Call initiated to room:', joinRoomId);
+				setConnectionState('connecting');
 
-			call.on('error', (err) => {
-				console.error('Room call error:', err);
-				setError('Room connection error: ' + err.message);
-			});
+				call.on('stream', (remoteStream) => {
+					console.log('Connected to room:', joinRoomId);
+					remoteStreamRef.current = remoteStream;
+					setRemoteStream(remoteStream);
+					
+					if (remoteVideoRef.current) {
+						remoteVideoRef.current.srcObject = remoteStream;
+					}
+					setIsConnected(true);
+					setConnectionState('connected');
+					setError('');
+				});
 
-			currentCallRef.current = call;
-			setConnectionState('connecting');
-			setError('');
-		} catch (err) {
-			console.error('Error joining room:', err);
-			setError('Failed to join room. Please check the room ID.');
+				call.on('close', () => {
+					console.log('Left room:', joinRoomId);
+					setIsConnected(false);
+					setConnectionState('disconnected');
+					if (remoteVideoRef.current) {
+						remoteVideoRef.current.srcObject = null;
+					}
+					setRemoteStream(null);
+					remoteStreamRef.current = null;
+				});
+
+				call.on('error', (err) => {
+					console.error('Room call error:', err);
+					console.error('Error type:', err.type);
+					console.error('Error message:', err.message);
+					
+					if (err.type === 'peer-unavailable') {
+						setError('Room "' + joinRoomId + '" does not exist. Please check the room ID.');
+					} else {
+						setError('Room connection error: ' + err.message);
+					}
+				});
+
+				currentCallRef.current = call;
+			} catch (err) {
+				console.error('Error joining room:', err);
+				setError('Failed to join room. Please check the room ID and try again.');
+			}
 		}
 	};
 
