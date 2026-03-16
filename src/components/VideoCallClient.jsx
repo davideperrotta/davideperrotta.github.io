@@ -8,8 +8,8 @@ const VideoCallClient = () => {
 	const [isConnected, setIsConnected] = useState(false);
 	const [isAudioEnabled, setIsAudioEnabled] = useState(true);
 	const [isVideoEnabled, setIsVideoEnabled] = useState(true);
-	const [peerId, setPeerId] = useState('');
-	const [remotePeerId, setRemotePeerId] = useState('');
+	const [roomId, setRoomId] = useState('');
+	const [joinRoomId, setJoinRoomId] = useState('');
 	const [error, setError] = useState('');
 	const [connectionState, setConnectionState] = useState('disconnected');
 
@@ -22,11 +22,47 @@ const VideoCallClient = () => {
 
 	const startLocalStream = async () => {
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({
-				video: true,
-				audio: true
-			});
+			console.log('Requesting media access...');
 			
+			// Check if media devices are available
+			if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+				throw new Error('getUserMedia is not supported in this browser');
+			}
+
+			// Try with different constraints
+			let stream;
+			try {
+				// First try with both video and audio
+				stream = await navigator.mediaDevices.getUserMedia({
+					video: {
+						width: { ideal: 1280 },
+						height: { ideal: 720 }
+					},
+					audio: true
+				});
+			} catch (videoErr) {
+				console.warn('Failed with HD video, trying basic video:', videoErr);
+				try {
+					// Try with basic video
+					stream = await navigator.mediaDevices.getUserMedia({
+						video: true,
+						audio: true
+					});
+				} catch (basicErr) {
+					console.warn('Failed with video, trying audio only:', basicErr);
+					try {
+						// Try audio only
+						stream = await navigator.mediaDevices.getUserMedia({
+							audio: true,
+							video: false
+						});
+					} catch (audioErr) {
+						throw new Error('Could not access any media devices. Please check browser permissions.');
+					}
+				}
+			}
+			
+			console.log('Media access granted, stream obtained:', stream);
 			localStreamRef.current = stream;
 			setLocalStream(stream);
 			
@@ -34,17 +70,21 @@ const VideoCallClient = () => {
 				localVideoRef.current.srcObject = stream;
 			}
 			
-			// Initialize PeerJS after getting media
+			// Initialize PeerJS with room-based ID
 			if (!peerRef.current) {
+				console.log('Initializing PeerJS...');
 				const peer = new Peer();
 				
 				peer.on('open', (id) => {
-					console.log('My peer ID is: ' + id);
-					setPeerId(id);
+					console.log('PeerJS connected with ID:', id);
 				});
 
 				peer.on('call', (call) => {
-					console.log('Receiving call from:', call.peer);
+					console.log('Receiving call in room:', call.metadata?.roomId || 'unknown');
+					if (!localStreamRef.current) {
+						console.error('No local stream to answer call');
+						return;
+					}
 					call.answer(localStreamRef.current);
 					
 					call.on('stream', (remoteStream) => {
@@ -79,36 +119,64 @@ const VideoCallClient = () => {
 				});
 
 				peerRef.current = peer;
+				console.log('PeerJS initialized successfully');
 			}
 			
 			setError('');
+			console.log('Camera and microphone started successfully');
 		} catch (err) {
-			console.error('Error accessing media devices:', err);
-			setError('Failed to access camera and microphone. Please check permissions.');
+			console.error('Detailed error accessing media devices:', err);
+			console.error('Error name:', err.name);
+			console.error('Error message:', err.message);
+			
+			let errorMessage = 'Failed to access camera and microphone. ';
+			
+			if (err.name === 'NotAllowedError') {
+				errorMessage += 'Permission denied. Please allow camera/microphone access in your browser settings and refresh the page.';
+			} else if (err.name === 'NotFoundError') {
+				errorMessage += 'No camera or microphone found. Please connect a device and try again.';
+			} else if (err.name === 'NotReadableError') {
+				errorMessage += 'Camera or microphone is already in use by another application.';
+			} else if (err.name === 'OverconstrainedError') {
+				errorMessage += 'Camera does not meet the required constraints. Try refreshing the page.';
+			} else if (err.name === 'TypeError') {
+				errorMessage += 'Media devices not supported in this browser or insecure context (need HTTPS).';
+			} else {
+				errorMessage += 'Error: ' + err.message;
+			}
+			
+			setError(errorMessage);
 		}
 	};
 
-	const callPeer = () => {
-		if (!remotePeerId) {
-			setError('Please enter a remote peer ID.');
-			return;
-		}
-
-		if (!peerRef.current || !localStreamRef.current) {
+	const createRoom = () => {
+		if (!localStreamRef.current) {
 			setError('Please start your camera first.');
 			return;
 		}
 
-		try {
-			const call = peerRef.current.call(remotePeerId, localStreamRef.current);
-			
-			if (!call) {
-				setError('Could not initiate call. Peer may not be available.');
+		const newRoomId = Math.random().toString(36).substring(2, 8);
+		setRoomId(newRoomId);
+		
+		// Create a peer with room ID as the identifier
+		const roomPeerId = `room-${newRoomId}`;
+		const peer = new Peer(roomPeerId);
+		
+		peer.on('open', (id) => {
+			console.log('Room created with ID:', newRoomId);
+			console.log('Room peer ID:', id);
+		});
+
+		peer.on('call', (call) => {
+			console.log('Someone joining room:', newRoomId);
+			if (!localStreamRef.current) {
+				console.error('No local stream to answer call');
 				return;
 			}
-
+			call.answer(localStreamRef.current);
+			
 			call.on('stream', (remoteStream) => {
-				console.log('Received remote stream');
+				console.log('Received remote stream in room');
 				remoteStreamRef.current = remoteStream;
 				setRemoteStream(remoteStream);
 				
@@ -120,7 +188,69 @@ const VideoCallClient = () => {
 			});
 
 			call.on('close', () => {
-				console.log('Call ended');
+				console.log('Call ended in room');
+				setIsConnected(false);
+				setConnectionState('disconnected');
+				if (remoteVideoRef.current) {
+					remoteVideoRef.current.srcObject = null;
+				}
+				setRemoteStream(null);
+				remoteStreamRef.current = null;
+			});
+
+			currentCallRef.current = call;
+		});
+
+		peer.on('error', (err) => {
+			console.error('Room peer error:', err);
+			setError('Room error: ' + err.message);
+		});
+
+		// Replace the existing peer
+		if (peerRef.current) {
+			peerRef.current.destroy();
+		}
+		peerRef.current = peer;
+		
+		setError('');
+	};
+
+	const joinRoom = () => {
+		if (!localStreamRef.current) {
+			setError('Please start your camera first.');
+			return;
+		}
+
+		if (!joinRoomId) {
+			setError('Please enter a room ID.');
+			return;
+		}
+
+		const roomPeerId = `room-${joinRoomId}`;
+		
+		try {
+			console.log('Joining room:', joinRoomId);
+			const call = peerRef.current.call(roomPeerId, localStreamRef.current, { metadata: { roomId: joinRoomId } });
+			
+			if (!call) {
+				setError('Could not join room. Room may not exist.');
+				return;
+			}
+
+			call.on('stream', (remoteStream) => {
+				console.log('Connected to room:', joinRoomId);
+				remoteStreamRef.current = remoteStream;
+				setRemoteStream(remoteStream);
+				
+				if (remoteVideoRef.current) {
+					remoteVideoRef.current.srcObject = remoteStream;
+				}
+				setIsConnected(true);
+				setConnectionState('connected');
+			});
+
+			call.on('close', () => {
+				console.log('Left room:', joinRoomId);
 				setIsConnected(false);
 				setConnectionState('disconnected');
 				if (remoteVideoRef.current) {
@@ -131,16 +261,16 @@ const VideoCallClient = () => {
 			});
 
 			call.on('error', (err) => {
-				console.error('Call error:', err);
-				setError('Call error: ' + err.message);
+				console.error('Room call error:', err);
+				setError('Room connection error: ' + err.message);
 			});
 
 			currentCallRef.current = call;
 			setConnectionState('connecting');
 			setError('');
 		} catch (err) {
-			console.error('Error calling peer:', err);
-			setError('Failed to call peer. Please check the peer ID.');
+			console.error('Error joining room:', err);
+			setError('Failed to join room. Please check the room ID.');
 		}
 	};
 
@@ -188,8 +318,8 @@ const VideoCallClient = () => {
 		setLocalStream(null);
 		setRemoteStream(null);
 		setIsConnected(false);
-		setPeerId('');
-		setRemotePeerId('');
+		setRoomId('');
+		setJoinRoomId('');
 		setConnectionState('disconnected');
 
 		if (localVideoRef.current) {
@@ -206,10 +336,10 @@ const VideoCallClient = () => {
 		};
 	}, []);
 
-	const copyPeerId = () => {
-		if (peerId) {
-			navigator.clipboard.writeText(peerId);
-			setError('Peer ID copied to clipboard!');
+	const copyRoomId = () => {
+		if (roomId) {
+			navigator.clipboard.writeText(roomId);
+			setError('Room ID copied to clipboard!');
 			setTimeout(() => setError(''), 2000);
 		}
 	};
@@ -261,29 +391,32 @@ const VideoCallClient = () => {
 						</button>
 					) : (
 						<>
-							{peerId && (
-								<div className="peer-info">
-									<div className="your-id">
-										<span>Your ID: </span>
-										<span className="peer-id">{peerId}</span>
-										<button onClick={copyPeerId} className="btn btn-copy">
+							<div className="room-controls">
+								<button onClick={createRoom} className="btn btn-secondary">
+									🏠 Create Room
+								</button>
+								
+								{roomId && (
+									<div className="room-info">
+										<span className="room-id">Room ID: {roomId}</span>
+										<button onClick={copyRoomId} className="btn btn-copy">
 											📋 Copy
 										</button>
 									</div>
+								)}
+								
+								<div className="join-controls">
+									<input
+										type="text"
+										value={joinRoomId}
+										onChange={(e) => setJoinRoomId(e.target.value)}
+										placeholder="Enter room ID to join"
+										className="room-input"
+									/>
+									<button onClick={joinRoom} className="btn btn-secondary" disabled={!joinRoomId}>
+										� Join Room
+									</button>
 								</div>
-							)}
-							
-							<div className="call-controls">
-								<input
-									type="text"
-									value={remotePeerId}
-									onChange={(e) => setRemotePeerId(e.target.value)}
-									placeholder="Enter remote peer ID"
-									className="peer-input"
-								/>
-								<button onClick={callPeer} className="btn btn-secondary" disabled={!remotePeerId}>
-									📞 Call
-								</button>
 							</div>
 						</>
 					)}
@@ -389,21 +522,19 @@ const VideoCallClient = () => {
 					gap: 0.75rem;
 				}
 
-				.peer-info {
+				.room-controls {
+					display: flex;
+					flex-direction: column;
+					gap: 0.75rem;
+				}
+
+				.room-info {
 					text-align: center;
 					color: #94a3b8;
 					font-size: 0.875rem;
 				}
 
-				.your-id {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					gap: 0.5rem;
-					flex-wrap: wrap;
-				}
-
-				.peer-id {
+				.room-id {
 					background: rgba(59, 130, 246, 0.2);
 					padding: 0.25rem 0.5rem;
 					border-radius: 0.25rem;
@@ -411,13 +542,13 @@ const VideoCallClient = () => {
 					color: #3b82f6;
 				}
 
-				.call-controls {
+				.join-controls {
 					display: flex;
 					gap: 0.5rem;
 					flex-wrap: wrap;
 				}
 
-				.peer-input {
+				.room-input {
 					flex: 1;
 					min-width: 200px;
 					padding: 0.5rem;
@@ -428,7 +559,7 @@ const VideoCallClient = () => {
 					font-size: 0.875rem;
 				}
 
-				.peer-input:focus {
+				.room-input:focus {
 					outline: none;
 					border-color: #3b82f6;
 					box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
@@ -555,7 +686,7 @@ const VideoCallClient = () => {
 						grid-template-columns: 1fr;
 					}
 
-					.call-controls {
+					.join-controls {
 						flex-direction: column;
 					}
 
@@ -565,11 +696,6 @@ const VideoCallClient = () => {
 
 					.btn {
 						justify-content: center;
-					}
-
-					.your-id {
-						flex-direction: column;
-						gap: 0.25rem;
 					}
 				}
 			`}</style>
