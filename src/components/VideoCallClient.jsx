@@ -499,7 +499,7 @@ const VideoCallClient = () => {
 										className="room-input"
 									/>
 									<button onClick={joinRoom} className="btn btn-secondary" disabled={!joinRoomId}>
-										� Join Room
+										→ Join Room
 									</button>
 								</div>
 							</div>
