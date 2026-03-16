@@ -6,6 +6,8 @@ links:
     url: https://davideperrotta.github.io/star-wars-app
   - label: 🌐 Old website (Vite + Vue)
     url: https://davideperrotta.github.io/davideperrotta-vite-vue
+  - label: 🖥️ Screen Sharing App (WebRTC + JS)
+    url: https://davideperrotta.github.io/webrtc
   - label: 📺 Video - Screen Sharing App (WebRTC + JS)
     url: https://www.youtube.com/watch?v=5olZrcFNk5A
   - label: 📺 Video - Full Stack App (NodeJS + MongoDB)
