@@ -605,6 +605,7 @@ const VideoCallClient = () => {
 					display: flex;
 					flex-direction: column;
 					gap: 0.75rem;
+					align-items: center;
 				}
 
 				.room-controls {
@@ -631,12 +632,15 @@ const VideoCallClient = () => {
 					display: flex;
 					gap: 0.5rem;
 					flex-wrap: wrap;
+					justify-content: center;
+					align-items: center;
 				}
 
 				.room-input {
-					flex: 1;
-					min-width: 200px;
-					padding: 0.5rem;
+					width: auto;
+					min-width: 180px;
+					max-width: 250px;
+					padding: 0.5rem 0.75rem;
 					border: 1px solid rgba(148, 163, 184, 0.3);
 					border-radius: 0.375rem;
 					background: #1e293b;
@@ -658,16 +662,17 @@ const VideoCallClient = () => {
 				}
 
 				.btn {
-					padding: 0.5rem 1rem;
+					padding: 0.5rem 0.75rem;
 					border: none;
 					border-radius: 0.375rem;
 					font-size: 0.875rem;
 					font-weight: 500;
 					cursor: pointer;
 					transition: all 0.2s;
-					display: flex;
+					display: inline-flex;
 					align-items: center;
 					gap: 0.25rem;
+					white-space: nowrap;
 				}
 
 				.btn:disabled {
