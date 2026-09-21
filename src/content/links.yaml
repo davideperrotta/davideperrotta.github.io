@@ -16,7 +16,9 @@ links:
     url: /ai
   - label: ☎️ Video Call (PeerJS)
     url: /videocall
-  - label: '🍕 AI coding session: APP in 3 minutes'
+  - label: 🍕 Pizzeria App
     url: https://davideperrotta.github.io/pizzeria/
+  - label: 🌤️ Meteo App
+    url: https://davideperrotta.github.io/meteo
   - label: 💻 Look all the projects on GitHub
     url: https://github.com/davideperrotta
