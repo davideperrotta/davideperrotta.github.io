@@ -20,7 +20,5 @@ links:
     url: https://linkedin.com/in/davideperrotta
   - label: CV resume (PDF)
     url: /davideperrotta-astro/resume.pdf
-  - label: AI chat
-    url: /ai
   - label: Blog
     url: /blog
